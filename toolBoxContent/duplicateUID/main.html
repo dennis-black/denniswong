@@ -61,7 +61,7 @@ footer {
     </header>
     <main>
         <button onclick="history.back()">返回到上一頁</button>
-        <button onclick="location.href='../../../index.html'">回到首頁</button></br></br>
+        <button onclick="location.href='../../index.html'">回到首頁</button></br></br>
         <article>
             <h2>爽爽複製自己的門禁磁扣</h2>
             <p>
@@ -151,8 +151,10 @@ footer {
                     <li>現在我們要將這組學生證上的UID寫進水卡裡面</br></br>
                         <img src="intoChangeuid.png" style="height: 400px;"></br>
                         步驟一：依照上圖找到ChangeUID</br></br></br>
+                        <img src="insertNewUID.png" style="height: 400px;">
                         <img src="newUploadAndMonitor.png" style="height: 400px;">
                         步驟二：
+                        </br>將我們剛才得知的學生證UID輸入到程式碼36行的define，請注意這是16進位的數字，因此前面要加“0x”。
                         </br>*1.點擊上傳按鈕，將範例程式上傳到開發板上
                         </br>*2.等待程式碼編譯，若output沒有出現紅色字體的字就表示程式碼是沒有問題的
                         </br>*3.點擊serial monitor 觀察與開發板的互動</br></br></br>
