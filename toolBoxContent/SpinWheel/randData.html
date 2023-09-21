@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dennis-Black 工具箱</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* 淺藍色背景 */
+}
+
+header {
+    background-color: #333; /* 主標題背景色 */
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* 白色內容背景 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+article {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd; /* 文章邊框 */
+}
+
+h2 {
+    font-size: 24px;
+}
+
+footer {
+    background-color: #333; /* 頁腳背景色 */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>資料選擇器</h1>
+    </header>
+    <main>
+        <button onclick="history.back()">返回到上一頁</button>
+        <button onclick="location.href='../../index.html'">回到首頁</button></br></br>        
+        <article>
+            <p>這是一個食物選擇器，以換行作為每一筆數據的分隔</p>
+<textarea id="foodList" style="height: 400px; width: 100%;">
+炒飯
+麵
+三明治
+沙拉
+拉麵
+炸雞
+咖哩飯
+早午餐
+水餃
+泡麵
+沙威瑪
+餛飩
+炒麵
+燉飯
+火鍋
+漢堡
+披薩
+薯條</textarea>
+                <br>
+                <button onclick="randomSelect()">隨機抽樣</button>
+                <h1 class="output" onclick="randTimes()"></h1>
+        </article>
+        <script>
+            async function randomSelect() {
+                var textareaContent = document.getElementById('foodList').value;
+                var dataArray = textareaContent.split('\n').filter(Boolean);
+
+                var outputElement = document.querySelector('.output');
+
+                var randNum = Math.floor(Math.random() * 20);
+                var delay = 20; // 每次抽樣間隔時間（毫秒）
+
+                for (var i = 0; i < randNum; i++) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    var randomIndex = Math.floor(Math.random() * dataArray.length);
+                    outputElement.textContent = '隨機抽樣的食物是：' + dataArray[randomIndex];
+                }
+            }
+
+            // function randomSelect() {
+            //     var textareaContent = document.getElementById('foodList').value;
+            //     var dataArray = textareaContent.split('\n').filter(Boolean);
+
+            //     var randomIndex = Math.floor(Math.random() * dataArray.length);
+
+            //     var outputElement = document.querySelector('.output');
+            //     outputElement.textContent = '隨機抽樣的食物是：' + dataArray[randomIndex];
+            // }
+        
+        </script>
+    </main>
+    <footer>
+        <p>&copy; 2023 黑貓工作室</p>
+    </footer>
+</body>
+</html>

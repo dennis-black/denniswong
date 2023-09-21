@@ -53,7 +53,7 @@ footer {
 </head>
 <body>
     <header>
-        <h1>食物選擇器</h1>
+        <h1>隨機數生成器</h1>
     </header>
     <main>
         <button onclick="history.back()">返回到上一頁</button>
@@ -81,18 +81,34 @@ footer {
 薯條</textarea>
                 <br>
                 <button onclick="randomSelect()">隨機抽樣</button>
-                <h1 class="output" onclick="displayRandomFood()"></h1>
+                <h1 class="output" onclick="randTimes()"></h1>
         </article>
         <script>
-            function randomSelect() {
+            async function randomSelect() {
                 var textareaContent = document.getElementById('foodList').value;
                 var dataArray = textareaContent.split('\n').filter(Boolean);
 
-                var randomIndex = Math.floor(Math.random() * dataArray.length);
-
                 var outputElement = document.querySelector('.output');
-                outputElement.textContent = '隨機抽樣的食物是：' + dataArray[randomIndex];
+
+                var randNum = Math.floor(Math.random() * 20);
+                var delay = 20; // 每次抽樣間隔時間（毫秒）
+
+                for (var i = 0; i < randNum; i++) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    var randomIndex = Math.floor(Math.random() * dataArray.length);
+                    outputElement.textContent = '隨機抽樣的食物是：' + dataArray[randomIndex];
+                }
             }
+
+            // function randomSelect() {
+            //     var textareaContent = document.getElementById('foodList').value;
+            //     var dataArray = textareaContent.split('\n').filter(Boolean);
+
+            //     var randomIndex = Math.floor(Math.random() * dataArray.length);
+
+            //     var outputElement = document.querySelector('.output');
+            //     outputElement.textContent = '隨機抽樣的食物是：' + dataArray[randomIndex];
+            // }
         
         </script>
     </main>
