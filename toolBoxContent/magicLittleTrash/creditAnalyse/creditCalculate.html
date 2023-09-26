@@ -83,8 +83,9 @@ footer {
                         若因為抵修或是尚未有成績導致資料欄位錯位，我們就必須手動修改，
                         正確的資料分隔才能讓JavaScript正確的將每一筆的每一個資料推進儲存資料的陣列，舉以下狀況為例：</br></br>
                         <ul>
-                            <li>英文抵修導致“抵修”兩個字直接佔據成績這一欄，我們需要在文字輸入欄中的
-                                “抵修”兩個字前面加上“60”以及一個空格，這個空格是分隔資料的識別，不可或缺</br></br></li>
+                            <li>英文抵修導致“抵修”兩個字直接佔據成績這一欄，<s>我們需要在文字輸入欄中的
+                                “抵修”兩個字前面加上“60”以及一個空格</s>，我們現在能夠直接將“抵修”取代成“60”分，
+                                因此遇到有抵修的科目可不做改變</br></br></li>
                             <li>現在“112/1”學期還沒有成績，因此也少了“成績”這一欄，由於複製表格貼上時有保留一些tab的空間，
                                 因此我們直接滑鼠點選編輯分數。請注意，編輯之後若沒有空格也請手動增加空格確保資料之間存在分隔。
                             </li>
@@ -464,15 +465,17 @@ footer {
                 var inputLines =  userInput.split('\n');
                 for(var i=0; i<inputLines.length; i++){
                     var array = inputLines[i].split(/\s+/);
-                        var dataDetail = {
-                            semester: array[0], //修課學期
-                            subjectCode: array[1], //科目編號
-                            subject: array[2], //修課科目
-                            credits: parseInt(array[3]), //該科目佔有學分
-                            score: parseInt(array[4]), //該科目的學期成績
-                            courseType: array[5] //判斷是通識課還是系上的課程
-                        }
-                        creditDetail.push(dataDetail);
+                    if(array[4]=="抵修") array[4] = 60; //代換“抵修”為“60”分
+                    // if(array[4]== "") array[4] = 0; //代換成0分
+                    var dataDetail = {
+                        semester: array[0], //修課學期
+                        subjectCode: array[1], //科目編號
+                        subject: array[2], //修課科目
+                        credits: parseInt(array[3]), //該科目佔有學分
+                        score: parseInt(array[4]), //該科目的學期成績
+                        courseType: array[5] //判斷是通識課還是系上的課程
+                    }
+                    creditDetail.push(dataDetail);
                 }
                 showInput();
                 processButton.disabled = true;
