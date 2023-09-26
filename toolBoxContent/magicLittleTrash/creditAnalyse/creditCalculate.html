@@ -466,7 +466,10 @@ footer {
                 for(var i=0; i<inputLines.length; i++){
                     var array = inputLines[i].split(/\s+/);
                     if(array[4]=="抵修") array[4] = 60; //代換“抵修”為“60”分
-                    // if(array[4]== "") array[4] = 0; //代換成0分
+                    if (isNaN(array[4])) {
+                        array[5] = array[4];
+                        array[4] = 0; //代換成0分
+                    }
                     var dataDetail = {
                         semester: array[0], //修課學期
                         subjectCode: array[1], //科目編號
