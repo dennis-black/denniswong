@@ -53,8 +53,7 @@ footer {
 </head>
 <body>
     <header>
-        <h1>屏東大學學分分析器</h1>
-        <h2>111級資工系專用</h2>
+        <h1>屏東大學111級資工系學分估算器</h1>
     </header>
     <main>
         <button onclick="history.back()">返回到上一頁</button>
@@ -67,9 +66,12 @@ footer {
             </p>
             <p>使用說明：
                 <ol>
-                    <li>該網站僅限“國立屏東大學-資訊工程學系”的學生使用</br></br></li>
-                    <li>該網站的學分計算方式是依照111年入學的“<a href="https://mega.nz/folder/XUFXhKwa#BAUqj1YqTfJXWJuJu3mj3Q">資訊工程學系-學生手冊</a>”
-                        中列出的科目進行學分計算，若您同樣為適用該學生手冊的學生也能夠使用該網站</br></br></li>
+                    <li>本學分估算器僅限“國立屏東大學-資訊工程學系”的學生使用。</br></br></li>
+                    <li>本估算器的學分計算方式是依照111年入學的“<a href="https://mega.nz/folder/XUFXhKwa#BAUqj1YqTfJXWJuJu3mj3Q">資訊工程學系-學生手冊</a>”
+                        中列出的科目進行學分計算，若您同樣為適用此學生手冊的學生也能夠使用本估算器。</br></br></li>
+                    <li>本學分估算器僅能估算資工系學生手冊中條列的系必修、
+                        系選修以及共同教育中心開設的通識課程。若您曾經修習過其他科系的課程學分加總將無法正確計算。</br></br></li>
+                    <li>若使用者輸入的成績欄位中有“抵修”的科目，學分估算器會將該科目以60分計算</li>
                 </ol>
                 使用步驟：
                 <ol>
@@ -78,8 +80,7 @@ footer {
                     <li>在“[A081]_線上查詢”選單中點選“[A0731S]_已修學分資料查詢”，
                         你就會看到所有曾經修過以及目前正在修習的課程
                         </br></br></li>
-                    <li>左鍵從修課學年期開始拖曳選取第一筆資料，一直到最後一筆資料的最後一個字複製到下方的文字輸入欄</br></br></li>
-                        
+                    <li>從修課學年期開始左鍵拖曳選取第一筆資料，一直到最後一筆資料的最後一個字並複製到下方的文字輸入欄</br></br></li>
                         <img src="instruction.png" style="height: 450px"></br></br></li>
                 </ol>
             </p>
@@ -88,7 +89,7 @@ footer {
 
             </div>
             </div></br>
-            <textarea id="userInput" style="height: 500px; width: 100%;"></textarea>
+            <textarea id="userInput" style="height: 300px; width: 100%;"></textarea>
             <br>
             <button id="processButton" onclick="processCredit()">開始分析</button>
             <p class="checkInput"><ol class="inputList"></ol></p>
@@ -477,27 +478,45 @@ footer {
             function showInput() {
                 var inputList = document.querySelector('.inputList');
                 var checkInput = document.querySelector('.checkInput');
-                checkInput.textContent = "根據使用者輸入的內容，請確認以下資訊是否正確："
-                for (var j = 0; j < creditDetail.length; j++) {
-                    var inputDetails = document.createElement('li');
-                    var showMessage = [
-                        creditDetail[j].semester + ' ' +
-                        creditDetail[j].subjectCode + ' ' +
-                        creditDetail[j].subject + ' ' +
-                        creditDetail[j].credits + ' ' +
-                        creditDetail[j].score + ' ' +
-                        creditDetail[j].courseType 
-                    ];
-                    var formattedMessage = showMessage.join('\n\n');
+                checkInput.textContent = "根據使用者輸入的內容，請確認以下資訊是否正確：";
 
-                    inputDetails.textContent = formattedMessage;
-                    inputList.appendChild(inputDetails); // 使用 appendChild 將 li 元素添加到 ul 中
-                    
+                // 創建表格元素
+                var table = document.createElement('table');
+                table.border = '1'; // 設定表格邊框
+
+                // 創建表頭
+                var tableHeader = document.createElement('tr');
+                tableHeader.innerHTML = '<th>序號</th><th>學期</th><th>科目編號</th><th>科目名稱</th><th>學分數</th><th>成績</th><th>開課單位</th>';
+                table.appendChild(tableHeader);
+
+                // 依次添加資料
+                for (var j = 0; j < creditDetail.length; j++) {
+                    var row = document.createElement('tr');
+                    var rowData = creditDetail[j];
+
+                    // 添加序號
+                    var indexCell = document.createElement('td');
+                    indexCell.textContent = j + 1;
+                    row.appendChild(indexCell);
+
+                    // 添加其他欄位
+                    var fields = ['semester', 'subjectCode', 'subject', 'credits', 'score', 'courseType'];
+                    for (var i = 0; i < fields.length; i++) {
+                        var cell = document.createElement('td');
+                        cell.textContent = rowData[fields[i]];
+                        row.appendChild(cell);
+                    }
+
+                    table.appendChild(row);
                 }
+
+                inputList.appendChild(table);
+
                 var calculateBtn = document.createElement('button');
-                calculateBtn.textContent = '上述資訊無誤，開始計算學分'; // 設定按鈕的文字
-                calculateBtn.onclick = showFinalCredit; 
+                calculateBtn.textContent = '上述資訊無誤，開始計算學分';
+                calculateBtn.onclick = showFinalCredit;
                 inputList.appendChild(calculateBtn);
+
                 calculateCredit();
             }
 
