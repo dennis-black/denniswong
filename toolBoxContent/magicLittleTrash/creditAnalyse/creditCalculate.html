@@ -461,6 +461,7 @@ footer {
                         array[5] = array[4];
                         array[4] = 0; //代換成0分
                     }
+                    if(array[5]=="資訊工程學系") array[5] = "資工系"; //簡化系級名稱
                     var dataDetail = {
                         semester: array[0], //修課學期
                         subjectCode: array[1], //科目編號
