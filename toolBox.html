@@ -7,9 +7,9 @@
     <title>Dennis-Black</title>
     <style>
         body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
         }
 
         .logo {
@@ -19,19 +19,19 @@
         }
 
         header {
-        background-color: #333;
-        color: #fff;
-        padding: 1rem;
+          background-color: #333;
+          color: #fff;
+          padding: 1rem;
         }
 
         nav ul {
-        float: right;
-        list-style: none;
-        display: flex;
+          float: right;
+          list-style: none;
+          display: flex;
         }
 
         nav li {
-        margin-right: 1rem;
+          margin-right: 1rem;
         }
 
         /* hover 導航欄效果 */
@@ -42,28 +42,53 @@
         }
 
         nav a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 15px;
+          text-decoration: none;
+          color: #fff;
+          font-size: 16px;
+        }
+
+        .catalog a{
+          /* background-color: #99c2ff; */
+          color :#0a326d;
+          text-decoration: none;
+          /* background-color: rgb(230, 243, 255); */
+          /* border-radius: 10px; */
+          /* padding: 5px; */
+          /* border-color: rgb(207, 215, 222); */
+          /* border-width: 1px;
+          border-style: solid; */
+        }
+
+        .catalog a:hover{
+          border-radius: 10px;
+          
+        }
+
+        .catalog{
+          list-style-type: circle;
         }
 
         section {
-        padding: 2rem;
+          padding: 2rem;
         }
 
         #home {
-        background-color: #f0f0f0;
+          background-color: #f0f0f0;
         }
 
         #portfolio .portfolio-item {
-        margin-bottom: 2rem;
+          margin-bottom: 2rem;
         }
 
         footer {
-        text-align: center;
-        padding: 1rem;
-        background-color: #333;
-        color: #fff;
+          /* position: fixed;
+          bottom: 0;
+          width: 100%; */
+          /* left: 0; */
+          padding: 1rem;
+          text-align: center;
+          background-color: #333;
+          color: #fff;
         }
 
         @media screen and (max-width: 600px) {
@@ -72,6 +97,12 @@
             color: #fff;
             padding-bottom: 60px;
             /* height: 50px; */
+          }
+
+          nav a{
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
           }
         }
 
@@ -98,33 +129,30 @@
       <h1>實用工具箱</br>Utility Toolbox</h1>
       <h3>請注意，為避免衍生不必要的法律事件以及版權問題
       </br>請謹慎使用</h3>
-      <h5>*工具箱的內容目前皆以電腦的顯示為主，還沒為手機的解析度排版網頁，因此用手機檢視可能導致圖片跑版</h5>
+      <!-- <h5>*工具箱的內容目前皆以電腦的顯示為主，還沒為手機的解析度排版網頁，因此用手機檢視可能導致圖片跑版</h5> -->
     </section>
 
     <section id="intro">
       <h2>工具</h2>
-      <ol>
+      <ul class="catalog">
         <li><a href="toolBoxContent/capsuleCrackPR/main.html">用破解軟體破解 adobe premiere (for Windows)</a></br></br></li>
-        <li><a href="toolBoxContent/kmsCrackOffice2016/main.html">用KMS金鑰跳過Windows的office 2016的授權 (for Windows)</a></br></br></li>
-        <li><a href="toolBoxContent/hitomiDownloader/main.html">下載mp3&mp4的黑魔法-Hitomi Downloader (for Windows)</a></li>
+        <li><a href="toolBoxContent/kmsCrackOffice2016/main.html">用KMS金鑰跳過office 2016的授權 (for Windows)</a></br></br></li>
+        <li><a href="toolBoxContent/hitomiDownloader/main.html">下載mp3&mp4的黑魔法-Hitomi Downloader (for Windows)</a></br></br></li>
+        <li><a href="toolBoxContent/badSectorOrNot/main.html">該備份隨身碟/硬碟了嗎？Better safe than sorry.(for windows)</a></br></br></li>
+        <li><a href="toolBoxContent/freeNYTimesEssay/main.html">免費閱讀 New York Times 的文章</a></br></br></li>
+        <li><a href="toolBoxContent/duplicateUID/main.html">使用Arduino Uno板以及RC522複製磁扣UID</a></br></br></li>
         <!-- <li><a href=""></a></li>
         <li><a href=""></a></li>
         <li><a href=""></a></li> -->
-      </ol>
-      </br></br><hr><h2>技巧</h2>
-      <ol>
-        <li><a href="toolBoxContent/freeNYTimesEssay/main.html">免費閱讀 New York Times 的文章</a></br></br></li>
-        <li><a href="toolBoxContent/duplicateUID/main.html">使用Arduino Uno板以及RC522複製磁扣UID</a></br></br></li>
-        <li><a href="toolBoxContent/badSectorOrNot/main.html">該備份隨身碟/硬碟了嗎？Better safe than sorry.(for windows)</a></br></br></li>
-      </ol>
+      </ul>
       </br></br><hr><h2>神奇小廢物</h2>
-      <ol>
-        <li><a href="toolBoxContent/magicLittleTrash/chooseFood.html">食物選擇器</a></br></br></li>
-        <!-- <li><a href="toolBoxContent/magicLittleTrash/randData.html">(尚未完成)資料選擇器</a></br></br></li> -->
+      <ul class="catalog">
+        <li><a href="toolBoxContent/magicLittleTrash/spinWheel/chooseFood.html">食物選擇器</a></br></br></li>
+        <!-- <li><a href="toolBoxContent/magicLittleTrash/spinWheel/randData.html">(尚未完成)資料選擇器</a></br></br></li> -->
         <!-- <li><a href="toolBoxContent/magicLittleTrash/randNumber.html">(尚未完成)隨機數生成器</a></br></br></li> -->
         <li><a href="toolBoxContent/magicLittleTrash/creditAnalyse/creditCalculate.html">屏東大學111級資工系學分估算器</a></br></br></li>
 
-      </ol>
+      </ul>
     </br>
     </br>
     </section>

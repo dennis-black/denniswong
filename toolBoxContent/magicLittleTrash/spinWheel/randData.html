@@ -61,7 +61,8 @@
         <article>
             <p>這是一個資料隨機抽樣器，以換行作為每一筆數據的分隔</br>
             請在下方文字欄中輸入您要隨機抽樣的資料：</p>
-            <textarea id="userData" style="height: 200px; width: 100%;"></textarea>
+            <button onclick="clearTextarea()">清空輸入欄位</button></br></br>
+            <textarea id="userInput" style="height: 200px; width: 100%;"></textarea>
             </br>
             <p>要從上述資料中抽樣幾筆：<input id="dataQuantity" type="number" style="width: 40px" value="1" min="1"></p>
             <button onclick="randomSelect()">隨機抽樣</button>
@@ -104,29 +105,14 @@
                 newP.textContent =  recTime + "隨機抽樣結果："; // 每次抽樣的標題
                 outputElement.insertAdjacentElement('afterend', newP);
             }
+
+            function clearTextarea(){  //清空文字欄
+                var textareaContent = document.getElementById('userInput');
+                textareaContent.value = "";
+            }
             /*alert 抽樣數不得小於1
             check 抽樣資料可不可重複
             新增清空抽樣結果*/
-            // async function randomSelect() { //抽出一個隨機結果
-            //     var textareaContent = document.getElementById('userData').value;
-            //     var dataQuantity = document.getElementById('dataQuantity').value;
-            //     var dataArray = textareaContent.split('\n').filter(Boolean);
-
-            //     var outputElement = document.querySelector('.outputTitle');
-
-            //     var randNum = Math.floor(Math.random() * 20);
-            //     var delay = 30; // 每次抽樣間隔時間（毫秒）
-
-            //     for (var j = 0; j < dataQuantity; j++) {
-            //         for (var i = 0; i < randNum; i++) {
-            //             await new Promise(resolve => setTimeout(resolve, delay));
-            //             var randomIndex = Math.floor(Math.random() * dataArray.length);
-            //             var output = document.createElement('h4');
-            //             output.textContent = '' + dataArray[randomIndex];
-            //         }
-            //         outputElement.appendChild(output);
-            //     }
-            // }
         </script>
     </main>
     <footer>

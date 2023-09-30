@@ -7,101 +7,119 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f8ff; /* 淺藍色背景 */
-}
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* 淺藍色背景 */
+        }
 
-header {
-    background-color: #333; /* 主標題背景色 */
-    color: #fff;
-    text-align: center;
-    padding: 2rem 0;
-}
+        header {
+            background-color: #333; /* 主標題背景色 */
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+        }
 
-header h1 {
-    font-size: 36px;
-}
+        header h1 {
+            font-size: 36px;
+        }
 
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff; /* 白色內容背景 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+        .backTo{
+            background-color: rgb(223, 234, 240);
+            border-radius: 5px;
+        }
 
-article {
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd; /* 文章邊框 */
-}
+        .backTo:hover{
+            background-color: rgb(228, 243, 255);
+            
+        }
 
-h2 {
-    font-size: 24px;
-}
+        img{
+            max-width: 100%;
+            display: block;
+        }
 
-footer {
-    background-color: #333; /* 頁腳背景色 */
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-}
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* 白色內容背景 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        article {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd; /* 文章邊框 */
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        footer {
+            background-color: #333; /* 頁腳背景色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>用KMS金鑰破解Windows系統的office 2016</h1>
+        <h1>用KMS金鑰破解office 2016</h1>
+        <h2>for Windows</h2>
     </header>
     <main>
-        <button onclick="history.back()">返回到上一頁</button>
-        <button onclick="location.href='../../index.html'">回到首頁</button></br></br>        <article>
+        <button class="backTo" onclick="history.back()">返回到上一頁</button>
+        <button class="backTo" onclick="location.href='../../index.html'">回到首頁</button></br></br>        
+        <article>
             <h2>想辦法讓office跳過填寫序號的授權頁面</h2>
-            <p></br>
-                <img src="office2016.png" style="height: 150px;"></br>
+            <p>
+                <img src="office2016.png" style="max-height: 150px;"></br>
                 安裝之前，請先去設定中的應用程式將電腦原有的 Office解除安裝，
                 如：office365 , office2016/2019。</br></br>
-                
-                <a href="https://mega.nz/folder/OUEWxYaT#39kTFSnybaXa7reHWv8F4Q" target="_blank">這是Mega雲端硬碟</a>，
-                這一次需要用到的東西都在這裡，請先前往下載。</br></br>
-                該連結內包含兩個office 2016的安裝檔案，其中有一個是"zh"結尾的，那是繁體中文的版本；另一個則是英文版，下載來就可以直接點擊.exe進行安裝了。
-            </p>
-            <p>
-                該連結內包含一個破解指令，下載時可能會被瀏覽器警告，
-                選擇保留該檔案。保留該檔案後可能會被Windows defender 警告，
-                接著再去windows defender 
-                找到這個威脅的下拉選單選取"允許在設備上運行"。</br>
-                <img src="windowsDefenderAllow.png" style="height: 450px;"></br></br>
-
-
-                關閉剛剛下載的office所有軟體，確保已經連接網際網路。</br></br>
-            </p>
-            <p>
-                <img src="exeByAdiminRole.png" style="height: 350px;">
-                <img src="stillRunning.png" style="height: 300px;">
-                </br>
-                將這個副檔名為cmd的檔案按一次左鍵再按一次右鍵，點選"以系統管理員身分執行"，
-                當"Windows 以保護您的電腦"出現時，點選詳細資訊，之後選擇仍要執行。</br></br>
-            </p>
-            <p>
-                <img src="Activation.png" style="height: 500px;"></br>
-                接下來請等待直到你
-                看到了 "Product activation successful" 
-                的時候表示你已經可以使用office 2016了，
-                之後就可以關掉終端機了。
-                如果是失敗的話就看看是不是沒有卸掉電腦原本安裝的office，
-                之後整個流程再試一次。
-                </br></br>
+                操作步驟如下：</br>
+                <ol>
+                    <li>
+                        <a href="https://mega.nz/folder/OUEWxYaT#39kTFSnybaXa7reHWv8F4Q" target="_blank">
+                        這是Mega雲端硬碟</a>，
+                        這一次需要用到的東西都在這裡，請先前往下載。
+                        該連結內包含兩個office 2016的安裝檔案，其中有一個是"zh"結尾的，那是繁體中文的版本；另一個則是英文版，下載來就可以直接點擊.exe進行安裝了。
+                        該連結內包含一個破解指令，下載時可能會被瀏覽器警告，
+                        選擇保留該檔案。保留該檔案後可能會被Windows defender 警告，
+                        接著再去windows defender 
+                        找到這個威脅的下拉選單選取"允許在設備上運行"。
+                        <a href="windowsDefenderAllow.png" target="_blank"><img src="windowsDefenderAllow.png"></a>
+                        </br></br>
+                    </li>
+                    <li>
+                        關閉剛剛下載的office所有軟體，確保已經連接網際網路。</br></br>
+                    </li>
+                    <li>
+                        將這個副檔名為cmd的檔案按一次左鍵再按一次右鍵，點選"以系統管理員身分執行"，
+                        當"Windows 以保護您的電腦"出現時，點選詳細資訊，之後選擇仍要執行。</br>
+                        <a href="exeByAdiminRole.png" target="_blank"><img src="exeByAdiminRole.png" style="max-height: 300px; float: left;"></a>
+                        <a href="stillRunning.png" target="_blank"><img src="stillRunning.png" style="max-height: 300px;"></a>
+                        </br></br>
+                    </li>
+                    <li>
+                        接下來請等待直到你
+                        看到了 "Product activation successful" 
+                        的時候表示你已經可以使用office 2016了，
+                        之後就可以關掉終端機了。
+                        如果是失敗的話就看看是不是沒有卸掉電腦原本安裝的office，
+                        之後整個流程再試一次。
+                        <a href="Activation.png" target="_blank"><img src="Activation.png"></a></br>
+                    </li>
+                    </br></br>
+                </ol>
                 請注意，這個方法只是幫你跳過授權的頁面，並不是幫你電腦上面的office授權，
                 因此請在使用時務必小心：office可能會顯示“為何要冒這個風險使用盜版office”，
                 在將電腦畫面投射到大螢幕之前，要確保“為何要冒這個風險使用盜版office”已經被關掉了。
             </p>
-            <p>
-               
-            </p>
-
+            <h4 style="float: right;">更新時間: Sept. 30 2023</h4>
         </article>
     </main>
     <footer>

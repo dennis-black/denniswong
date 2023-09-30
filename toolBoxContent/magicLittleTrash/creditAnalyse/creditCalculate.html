@@ -7,48 +7,63 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f8ff; /* 淺藍色背景 */
-}
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* 淺藍色背景 */
+        }
 
-header {
-    background-color: #333; /* 主標題背景色 */
-    color: #fff;
-    text-align: center;
-    padding: 2rem 0;
-}
+        header {
+            background-color: #333; /* 主標題背景色 */
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+        }
 
-header h1 {
-    font-size: 36px;
-}
+        header h1 {
+            font-size: 36px;
+        }
 
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff; /* 白色內容背景 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+        .backTo{
+            background-color: rgb(223, 234, 240);
+            border-radius: 5px;
+        }
 
-article {
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd; /* 文章邊框 */
-}
+        .backTo:hover{
+            background-color: rgb(228, 243, 255);
+            
+        }
 
-h2 {
-    font-size: 24px;
-}
+        img{
+            max-width: 100%;
+            display: block;
+        }
 
-footer {
-    background-color: #333; /* 頁腳背景色 */
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-}
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* 白色內容背景 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        article {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd; /* 文章邊框 */
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        footer {
+            background-color: #333; /* 頁腳背景色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -56,43 +71,68 @@ footer {
         <h1>屏東大學111級資工系</br>學分估算器</h1>
     </header>
     <main>
-        <button onclick="history.back()">返回到上一頁</button>
-        <button onclick="location.href='../../../index.html'">回到首頁</button></br></br>        
+        <button class="backTo" onclick="history.back()">返回到上一頁</button>
+        <button class="backTo" onclick="location.href='../../../index.html'">回到首頁</button></br></br>        
         <article>
-            
-            <p>聲明：該網站架設係透過GitHub Pages，GitHub Pages僅支援全前端的網頁碼，
-                因此這個網站不會紀錄任何資訊，也無法紀錄任何資訊，
-                所有的計算過程全部由使用者端的瀏覽器進行，請各位使用者放心使用。
+            <p>
+                <p>
+                    聲明：該網站架設係透過GitHub Pages，GitHub Pages僅支援全前端的網頁碼，
+                    因此這個網站不會紀錄任何資訊，也無法紀錄任何資訊，
+                    所有的計算過程全部由使用者端的瀏覽器進行，請各位使用者放心使用。
+                </p>
+                <p>使用說明：
+                    <ol>
+                        <li>
+                            本學分估算器僅限“國立屏東大學-資訊工程學系”的學生使用。
+                            </br></br>
+                        </li>
+                        <li>
+                            本估算器的學分計算方式是依照111年入學的“<a href="https://mega.nz/folder/XUFXhKwa#BAUqj1YqTfJXWJuJu3mj3Q" target="_blank">資訊工程學系-學生手冊</a>”
+                            中列出的科目進行學分計算，若您同樣為適用此學生手冊的學生也能夠使用本估算器。
+                            </br></br>
+                        </li>
+                        <li>
+                            本學分估算器僅能估算資工系學生手冊中條列的系必修、
+                            系選修以及共同教育中心開設的通識課程。若您曾經修習過其他科系的課程學分加總將無法正確計算。
+                            </br></br>
+                        </li>
+                        <li>
+                            若使用者輸入的成績欄位中有“抵修”的科目，學分估算器會將該科目以60分計算
+                        </li>
+                    </ol>
+                    操作步驟：
+                    <ol>
+                        <li>
+                            登入“<a href="https://webap.nptu.edu.tw/web1/Secure/default.aspx" target="_blank">國立屏東大學-學生資訊系統</a>”
+                            </br></br>
+                        </li>
+                        <li>
+                            登入後再左邊選單點選“[A081]_線上查詢”
+                            </br></br>
+                        </li>
+                        <li>
+                            在“[A081]_線上查詢”選單中點選“[A0731S]_已修學分資料查詢”，
+                            你就會看到所有曾經修過以及目前正在修習的課程
+                            </br></br>
+                        </li>
+                        <li>
+                            從修課學年期開始左鍵拖曳選取第一筆資料，一直到最後一筆資料的最後一個字並複製到下方的文字輸入欄
+                            <a href="instruction.png" target="_blank"><img src="instruction.png"></a>
+                            </br></br>
+                        </li>
+                    </ol>
+                </p>
+                <div>
+                    <button onclick="clearTextarea()">清空輸入欄</button>
+    
+                </div>
+                </div></br>
+                <textarea id="userInput" style="height: 300px; width: 100%;"></textarea>
+                <br>
+                <button id="processButton" onclick="processCredit()">開始分析</button>
+                <p class="checkInput"><ol class="inputList"></ol></p>
             </p>
-            <p>使用說明：
-                <ol>
-                    <li>本學分估算器僅限“國立屏東大學-資訊工程學系”的學生使用。</br></br></li>
-                    <li>本估算器的學分計算方式是依照111年入學的“<a href="https://mega.nz/folder/XUFXhKwa#BAUqj1YqTfJXWJuJu3mj3Q">資訊工程學系-學生手冊</a>”
-                        中列出的科目進行學分計算，若您同樣為適用此學生手冊的學生也能夠使用本估算器。</br></br></li>
-                    <li>本學分估算器僅能估算資工系學生手冊中條列的系必修、
-                        系選修以及共同教育中心開設的通識課程。若您曾經修習過其他科系的課程學分加總將無法正確計算。</br></br></li>
-                    <li>若使用者輸入的成績欄位中有“抵修”的科目，學分估算器會將該科目以60分計算</li>
-                </ol>
-                操作步驟：
-                <ol>
-                    <li>登入“<a href="https://webap.nptu.edu.tw/web1/Secure/default.aspx">國立屏東大學-學生資訊系統</a>”</br></br></li>
-                    <li>登入後再左邊選單點選“[A081]_線上查詢”</br></br></li>
-                    <li>在“[A081]_線上查詢”選單中點選“[A0731S]_已修學分資料查詢”，
-                        你就會看到所有曾經修過以及目前正在修習的課程
-                        </br></br></li>
-                    <li>從修課學年期開始左鍵拖曳選取第一筆資料，一直到最後一筆資料的最後一個字並複製到下方的文字輸入欄</br></br></li>
-                        <img src="instruction.png" style="height: 450px"></br></br></li>
-                </ol>
-            </p>
-            <div>
-                <button onclick="clearTextarea()">清空輸入欄</button>
-
-            </div>
-            </div></br>
-            <textarea id="userInput" style="height: 300px; width: 100%;"></textarea>
-            <br>
-            <button id="processButton" onclick="processCredit()">開始分析</button>
-            <p class="checkInput"><ol class="inputList"></ol></p>
+            <h4 style="float: right;">更新時間: Sept. 30 2023</h4>
         </article>
         <script>
             var creditDetail = [];
