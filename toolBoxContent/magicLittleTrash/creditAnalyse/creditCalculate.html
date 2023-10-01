@@ -97,7 +97,10 @@
                             </br></br>
                         </li>
                         <li>
-                            若使用者輸入的成績欄位中有“抵修”的科目，學分估算器會將該科目以60分計算
+                            若使用者輸入的成績欄位中有“抵修”的科目，學分估算器會將該科目以60分計算。</br></br>
+                        </li>
+                        <li>
+                            有鑑於使用手機複製貼上時手機會自動裁切空格造成錯誤，因此請儘量使用電腦操作。
                         </li>
                     </ol>
                     操作步驟：
@@ -496,7 +499,12 @@
                 var inputLines =  userInput.split('\n');
                 for(var i=0; i<inputLines.length; i++){
                     var array = inputLines[i].split(/\s+/);
-                    if(array[4]=="抵修") array[4] = 60; //代換“抵修”為“60”分
+                    if(array[4]=="抵修") {
+                        array[4] = 60; //代換“抵修”為“60”分
+                        if((array[1]=="GEC1212")||(array[1]=="GEC1222")){
+                            array[5] = "通識";
+                        }
+                    }
                     if (isNaN(array[4])) {
                         array[5] = array[4];
                         array[4] = 0; //代換成0分
