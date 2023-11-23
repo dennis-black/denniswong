@@ -138,7 +138,8 @@
             <h4 style="float: right;">更新時間: Sept. 30 2023</h4>
         </article>
         <script>
-            var creditDetail = [];
+            var creditDetail = []; //將使用者輸入的學分詳細內容推入
+            var mistakeDetail = []; //將使用者輸入的不在《111年資訊工程學系-學生手冊》課程編號並取得的學分推入
             var creditSum = 0; //總學分
             var compulsoryCredit = 0; //系必修
             var electiveCredit = 0; //系選修
@@ -203,6 +204,7 @@
                                 compulsoryCredit+=4;
                                 break;
                             }
+                        // default: //
                     }
 
                     switch(subjectCode){ //=================系選修

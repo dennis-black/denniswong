@@ -87,6 +87,7 @@
                 <button onclick="snackTemplate()">小吃</button>
                 <button onclick="beverageTemplate()">飲料</button>
                 <button onclick="RobotTemplate()">零件</button>
+                <button onclick="nptuOnly()">屏東大學附近的食物</button>
             </div></br>
             <textarea id="foodList" style="height: 200px; width: 100%;"></textarea>
                 <br>
@@ -139,6 +140,12 @@
                 var textareaContent = document.getElementById('foodList');
                 if (textareaContent.value != '') textareaContent.value = textareaContent.value + "\n";
                 textareaContent.value = textareaContent.value + "變速箱\n電池\n電動機\n燃料泵\n機油\n電路板\n前瞻進位加法器\n火星塞\n伺服馬達\n關節\n螺母\n陀螺儀\n加速度計\n電子控制板\n太陽能板\n渦輪增壓";
+            }
+
+            function nptuOnly(){
+                var textareaContent = document.getElementById('foodList');
+                if (textareaContent.value != '') textareaContent.value = textareaContent.value + "\n";
+                textareaContent.value = textareaContent.value + "漢堡大師\n東港餃子館\n家家福\nMy早午餐\n七輪早午餐\n碗粿婆\n佳香滷味\n雲味麵館\n呷粗飽\n阿Q快餐\n幸福早午餐\n晨間廚房";
             }
 
             // function defaultTemplate(){
