@@ -123,6 +123,11 @@
                             <a href="instruction.png" target="_blank"><img src="instruction.png"></a>
                             </br></br>
                         </li>
+                        <li>
+                            最後，按下 “開始分析” 按鈕並按照指示操作，網頁就能夠幫你完成學分的計算
+                            </br></br>
+                        </li>
+
                     </ol>
                 </p>
                 <div>
@@ -135,11 +140,11 @@
                 <button id="processButton" onclick="processCredit()">開始分析</button>
                 <p class="checkInput"><ol class="inputList"></ol></p>
             </p>
-            <h4 style="float: right;">更新時間: Sept. 30 2023</h4>
+            <h4 style="float: right;">更新時間: Nov. 30 2023</h4>
         </article>
         <script>
             var creditDetail = []; //將使用者輸入的學分詳細內容推入
-            var mistakeDetail = []; //將使用者輸入的不在《111年資訊工程學系-學生手冊》課程編號並取得的學分推入
+            var mistakeDetail = ""; //將使用者輸入的不在《111年資訊工程學系-學生手冊》課程編號推入
             var creditSum = 0; //總學分
             var compulsoryCredit = 0; //系必修
             var electiveCredit = 0; //系選修
@@ -180,6 +185,8 @@
                                 creditSum += 3;
                                 compulsoryCredit += 3;
                                 break;
+                            } else {
+                                break;
                             }
                         
                         case "BFCZ038": //電子電路實習
@@ -187,6 +194,8 @@
                             if(score>=60){
                                 creditSum += 1;
                                 compulsoryCredit += 1;
+                                break;
+                            } else {
                                 break;
                             }
 
@@ -196,6 +205,8 @@
                                 creditSum += 2;
                                 compulsoryCredit += 2;
                                 break;
+                            } else {
+                                break;
                             }
 
                         case "BFCZ172": //數位系統導論暨實習
@@ -203,11 +214,11 @@
                                 creditSum += 4;
                                 compulsoryCredit+=4;
                                 break;
+                            } else {
+                                break;
                             }
-                        // default: //
-                    }
-
-                    switch(subjectCode){ //=================系選修
+                        
+                        //======================================系選修
                         case "BFCZ044": //視覺話程式設計
                         case "BFCZ100": //網頁設計與應用
                         case "BFCZ136": //RFID概論
@@ -244,6 +255,8 @@
                                 creditSum += 3;
                                 electiveCredit+=3;
                                 break;
+                            } else {
+                                break;
                             }
 
                         case "BFCZ174": //校外實習D
@@ -251,10 +264,11 @@
                                 creditSum += 1;
                                 electiveCredit+=1;
                                 break;
+                            } else {
+                                break;
                             }
-                    }
-
-                    switch(subjectCode){//===============共同教育
+                        
+                        //======================================共同教育
                         case "GEC1111": //國文上===========國文課程
                         case "GEC1121": //國文下
                         case "GEC1212": //基礎學術英文上====英文課程
@@ -278,10 +292,12 @@
                             if(score>=60){
                                 generalCredit += 2;
                                 creditSum += 2;
+                                break;
+                            } else {
+                                break;
                             }
-                    }
-
-                    switch(subjectCode){ //========公民與社會
+                        
+                        //======================================公民與社會
                         case "GEC2102": //倫理學與道德推理
                         case "GEC2103": //邏輯與批判思考
                         case "GEC2106": //應用倫理與跨領域對話
@@ -332,10 +348,12 @@
                                 creditSum += 2;
                                 boyaCredit += 2;
                                 SSCredit += 2;
+                                break;
+                            } else {
+                                break;
                             }
-                    }
 
-                    switch(subjectCode){ //===============美學與文化
+                        //======================================美學與文化
                         case "GEC1102": //應用國文
                         case "GEC2101": //哲學與當代議題
                         case "GEC2104": //東方哲學與生活智慧
@@ -400,10 +418,12 @@
                                 creditSum += 2;
                                 boyaCredit += 2;
                                 BCCredit += 2;
+                                break;
+                            } else {
+                                break;
                             }
-                    }
 
-                    switch(subjectCode) {//========自然與科學
+                        //======================================自然與科學
                         case "GEC2441": //音樂與健康
                         case "GEC2501": //STS導向自然科學通論
                         case "GEC2502": //科技與文明發展
@@ -440,16 +460,20 @@
                                 creditSum += 2;
                                 boyaCredit += 2;
                                 NTCredit += 2;
+                                break;
+                            } else {
+                                break;
                             }
-                    }
-
-                    switch(subjectCode){
+                      
+                        //======================================體適能
                         case "GEC4211": //體育上
                         case "GEC4221": //體育下
                         case "GEC4207": //適應體育
                             if(score>=60){
                                 creditSum += 1;
                                 PFCredit += 1;
+                                break;
+                            } else {
                                 break;
                             }
                         case "GEC4202A": //籃球
@@ -476,22 +500,56 @@
                             if(score>=60){
                                 creditSum += 2;
                                 PFCredit += 2;
+                                break;
+                            } else {
+                                break;
                             }
+
+                        default: mistakeDetail = mistakeDetail+subjectCode+' '; 
                     }
                 }
             }
 
             function showFinalCredit(){
-                alert('以下是根據使用者輸入內容的學分估算'+
-                '\n總學分：'+creditSum+
-                '\n系必修：'+compulsoryCredit+
-                '\n系選修：'+electiveCredit+
-                '\n共同教育：'+generalCredit+
-                '\n博雅教育：'+boyaCredit+
-                '\n   美學文化：'+BCCredit+
-                '\n   公民社會：'+SSCredit+
-                '\n   自然科技：'+NTCredit+
-                '\n體適能：'+PFCredit);
+                if(mistakeDetail == ""){
+                    alert('使用者所輸入的科目代號都能在《111級資工系學生手冊》上被找到\n'+
+                    '以下是根據使用者輸入內容的學分估算'+
+                    '\n總學分：'+creditSum+
+                    '\n系必修：'+compulsoryCredit+
+                    '\n系選修：'+electiveCredit+
+                    '\n共同教育：'+generalCredit+
+                    '\n體適能：'+PFCredit+
+                    '\n博雅教育：'+boyaCredit+
+                    '\n   ->美學文化：'+BCCredit+
+                    '\n   ->公民社會：'+SSCredit+
+                    '\n   ->自然科技：'+NTCredit);
+                } else{
+                    alert('使用者輸入的某些科目代號無在在《111級資工系學生手冊》上被找到，以下無法被找到的科目代號：\n'+
+                    mistakeDetail+
+                    '\n\n以下是根據使用者輸入內容的學分估算'+
+                    '\n總學分：'+creditSum+
+                    '\n系必修：'+compulsoryCredit+
+                    '\n系選修：'+electiveCredit+
+                    '\n共同教育：'+generalCredit+
+                    '\n體適能：'+PFCredit+
+                    '\n博雅教育：'+boyaCredit+
+                    '\n   ->美學文化：'+BCCredit+
+                    '\n   ->公民社會：'+SSCredit+
+                    '\n   ->自然科技：'+NTCredit);
+                }
+                // alert('以下是根據使用者輸入內容的學分估算'+
+                // '\n總學分：'+creditSum+
+                // '\n系必修：'+compulsoryCredit+
+                // '\n系選修：'+electiveCredit+
+                // '\n共同教育：'+generalCredit+
+                // '\n體適能：'+PFCredit+
+                // '\n博雅教育：'+boyaCredit+
+                // '\n   ->美學文化：'+BCCredit+
+                // '\n   ->公民社會：'+SSCredit+
+                // '\n   ->自然科技：'+NTCredit);
+
+                
+                
                 location.reload();
             }
             
