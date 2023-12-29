@@ -454,6 +454,7 @@ function showInput() {
     // 創建表格元素
     var table = document.createElement('table');
     table.border = '1'; // 設定表格邊框
+    table.style.width = '100%';
 
     // 創建表頭
     var tableHeader = document.createElement('tr');
@@ -463,6 +464,14 @@ function showInput() {
     // 依次添加資料
     for (var i = 0; i < creditDetail.length; i++) {
         var row = document.createElement('tr');
+
+        row.addEventListener('mouseenter', function() {//產生hover效果
+            this.style.backgroundColor = 'lightgray'; 
+        });
+        row.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = ''; 
+        });
+
         var rowData = creditDetail[i];
 
         // 添加序號
@@ -479,6 +488,12 @@ function showInput() {
                 input.type = 'text';
                 input.size = 3;
                 input.value = rowData[fields[j]]; // Set initial value from the data
+                if(creditDetail[i].score>=60){
+                    input.style.color = 'blue';
+                } else {
+                    input.style.color = 'red';
+                }
+                
 
                 (function(currentIndex) {
                     input.addEventListener('input', function(event) {
