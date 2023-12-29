@@ -462,7 +462,7 @@ function showFinalCredit() {
     };
 
     var exportButton = document.createElement('button');
-    exportButton.textContent = '匯出';
+    exportButton.textContent = '匯出(尚未完成)';
     exportButton.onclick = function() {
         exportToExcel()
     };
