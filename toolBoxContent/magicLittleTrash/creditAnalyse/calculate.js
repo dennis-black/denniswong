@@ -366,48 +366,113 @@ function calculateCredit(){
     }
 }
 
-function showFinalCredit(){
-    if(mistakeDetail == ""){
-        alert('使用者所輸入的科目代號都能在《111級資工系學生手冊》上被找到\n'+
-        '以下是根據使用者輸入內容的學分估算'+
-        '\n總學分：'+creditSum+
-        '\n系必修：'+compulsoryCredit+
-        '\n系選修：'+electiveCredit+
-        '\n共同教育：'+generalCredit+
-        '\n體適能：'+PFCredit+
-        '\n博雅教育：'+boyaCredit+
-        '\n   ->美學文化：'+BCCredit+
-        '\n   ->公民社會：'+SSCredit+
-        '\n   ->自然科技：'+NTCredit);
-    } else{
-        alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，以下是無法被找到的科目代號：\n'+
-        mistakeDetail+
-        '\n\n以下是根據使用者輸入內容的學分估算'+
-        '\n總學分：'+creditSum+
-        '\n系必修：'+compulsoryCredit+
-        '\n系選修：'+electiveCredit+
-        '\n共同教育：'+generalCredit+
-        '\n體適能：'+PFCredit+
-        '\n博雅教育：'+boyaCredit+
-        '\n   ->美學文化：'+BCCredit+
-        '\n   ->公民社會：'+SSCredit+
-        '\n   ->自然科技：'+NTCredit);
-    }
-    // alert('以下是根據使用者輸入內容的學分估算'+
-    // '\n總學分：'+creditSum+
-    // '\n系必修：'+compulsoryCredit+
-    // '\n系選修：'+electiveCredit+
-    // '\n共同教育：'+generalCredit+
-    // '\n體適能：'+PFCredit+
-    // '\n博雅教育：'+boyaCredit+
-    // '\n   ->美學文化：'+BCCredit+
-    // '\n   ->公民社會：'+SSCredit+
-    // '\n   ->自然科技：'+NTCredit);
+// function showFinalCredit(){
+//     if(mistakeDetail == ""){
+//         alert('使用者所輸入的科目代號都能在《111級資工系學生手冊》上被找到\n'+
+//         '以下是根據使用者輸入內容的學分估算'+
+//         '\n總學分：'+creditSum+
+//         '\n系必修：'+compulsoryCredit+
+//         '\n系選修：'+electiveCredit+
+//         '\n共同教育：'+generalCredit+
+//         '\n體適能：'+PFCredit+
+//         '\n博雅教育：'+boyaCredit+
+//         '\n   ->美學文化：'+BCCredit+
+//         '\n   ->公民社會：'+SSCredit+
+//         '\n   ->自然科技：'+NTCredit);
+//     } else{
+//         alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，以下是無法被找到的科目代號：\n'+
+//         mistakeDetail+
+//         '\n\n以下是根據使用者輸入內容的學分估算'+
+//         '\n總學分：'+creditSum+
+//         '\n系必修：'+compulsoryCredit+
+//         '\n系選修：'+electiveCredit+
+//         '\n共同教育：'+generalCredit+
+//         '\n體適能：'+PFCredit+
+//         '\n博雅教育：'+boyaCredit+
+//         '\n   ->美學文化：'+BCCredit+
+//         '\n   ->公民社會：'+SSCredit+
+//         '\n   ->自然科技：'+NTCredit);
+//     }
+//     location.reload();
+// }
 
-    
-    
-    location.reload();
+function showFinalCredit() {
+    if(mistakeDetail != "")
+        alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，以下是無法被找到的科目代號：\n'+ mistakeDetail)
+
+    var creditTable = document.createElement('table');
+    creditTable.border = '1';
+    creditTable.style.width = '100%';
+    creditTable.setAttribute('id', 'creditTable');
+
+    var tableContent = `
+    <table border="1">
+        <tr>
+            <td colspan=2>總學分</td>
+            <td>${creditSum}</td>
+        </tr>
+        <tr>
+            <td rowspan="2">資工系</td>
+            <td>系必修</td>
+            <td>${compulsoryCredit}</td>
+        </tr>
+        <tr>
+            <td>系選修</td>
+            <td>${electiveCredit}</td>
+        </tr>
+        <tr>
+            <td rowspan="6">通識教育</td>
+            <td>共同教育</td>
+            <td>${generalCredit}</td>
+        </tr>
+        <tr>
+            <td>體適能</td>
+            <td>${PFCredit}</td>
+        </tr>
+        <tr style="color: blue;">
+            <td>美學與文化</td>
+            <td>${BCCredit}</td>
+        </tr>
+        <tr style="color: blue;">
+            <td>公民與社會</td>
+            <td>${SSCredit}</td>
+        </tr>
+        <tr style="color: blue;">
+            <td>自然與科技</td>
+            <td>${NTCredit}</td>
+        </tr>
+        <tr style="color: blue;">
+            <td>博雅教育</td>
+            <td>${boyaCredit}</td>
+        </tr>
+    </table>
+    `;
+    creditTable.innerHTML = tableContent;
+
+    var inputList = document.querySelector('.inputList');
+    inputList.appendChild(creditTable);
+
+    var inputList = document.querySelector('.inputList');
+    inputList.appendChild(creditTable);
+
+    var clearButton = document.createElement('button');
+    clearButton.textContent = '清空';
+    clearButton.onclick = function() {
+        location.reload();
+    };
+
+    var exportButton = document.createElement('button');
+    exportButton.textContent = '匯出';
+    exportButton.onclick = function() {
+        exportToExcel()
+    };
+
+    inputList.appendChild(clearButton);
+    inputList.appendChild(exportButton);
 }
+
+
+
 
 function processCredit(){
     var userInput = document.getElementById('userInput').value;
@@ -455,6 +520,7 @@ function showInput() {
     var table = document.createElement('table');
     table.border = '1'; // 設定表格邊框
     table.style.width = '100%';
+    table.setAttribute('id', 'checkInput');
 
     // 創建表頭
     var tableHeader = document.createElement('tr');
@@ -526,12 +592,35 @@ function showInput() {
     calculateBtn.onclick = function() {
         calculateCredit();
         showFinalCredit();
+        calculateBtn.style.display = 'none';
+        restartBtn.style.display = 'none';
     };
 
     inputList.appendChild(calculateBtn);
     inputList.appendChild(restartBtn);
 
 }
+
+function exportToExcel() {
+    const wb = XLSX.utils.book_new();
+  
+    // 假設有兩個表格，checkInput 和 creditTable
+    const checkInputTable = document.getElementById("checkInput");
+    const creditTable = document.getElementById("creditTable");
+  
+    const checkInputWS = XLSX.utils.table_to_sheet(checkInputTable);
+    const creditTableWS = XLSX.utils.table_to_sheet(creditTable);
+  
+    XLSX.utils.book_append_sheet(wb, checkInputWS, "Check Input");
+    XLSX.utils.book_append_sheet(wb, creditTableWS, "Credit Table");
+  
+    const currentDate = new Date();
+    const dateString = currentDate.toISOString().slice(0, 19).replace(/[-:T]/g, "");
+    const filename = `學分計算_${dateString}.xlsx`;
+  
+    // 將工作簿寫入檔案並下載
+    XLSX.writeFile(wb, filename);
+  }
 
 
 function clearTextarea(){  //清空文字欄
