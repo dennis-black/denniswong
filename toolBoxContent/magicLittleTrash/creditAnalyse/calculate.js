@@ -380,7 +380,7 @@ function showFinalCredit(){
         '\n   ->公民社會：'+SSCredit+
         '\n   ->自然科技：'+NTCredit);
     } else{
-        alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，以下無法被找到的科目代號：\n'+
+        alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，以下是無法被找到的科目代號：\n'+
         mistakeDetail+
         '\n\n以下是根據使用者輸入內容的學分估算'+
         '\n總學分：'+creditSum+
@@ -411,7 +411,6 @@ function showFinalCredit(){
 
 function processCredit(){
     var userInput = document.getElementById('userInput').value;
-    var processButton = document.getElementById('processButton');
     var inputLines =  userInput.split('\n');
     for(var i=0; i<inputLines.length; i++){
         var array = inputLines[i].split(/\s+/);
@@ -437,13 +436,20 @@ function processCredit(){
         creditDetail.push(dataDetail);
     }
     showInput();
-    processButton.disabled = true;
+    var userInput = document.getElementById('userInput');
+    userInput.readOnly = true; //唯讀文字欄
+    var processButton = document.getElementById('processButton');
+    processButton.disabled = true; //禁用開始分析按鈕
+    var clearButton = document.getElementById('clearButton');
+    clearButton.disabled = true; //禁用清空輸入欄按鈕
+    var importTemplateButton = document.getElementById('importTemplateButton');
+    importTemplateButton.disabled = true; //禁用導入模板按鈕
 }
 
 function showInput() {
     var inputList = document.querySelector('.inputList');
     var checkInput = document.querySelector('.checkInput');
-    checkInput.textContent = "根據使用者輸入的內容，請確認以下資訊是否正確：";
+    checkInput.textContent = "根據使用者輸入的內容，請確認以下資訊是否正確；若需要修改所輸入的成績，請直接在下方表格中修改。";
 
     // 創建表格元素
     var table = document.createElement('table');
@@ -455,20 +461,36 @@ function showInput() {
     table.appendChild(tableHeader);
 
     // 依次添加資料
-    for (var j = 0; j < creditDetail.length; j++) {
+    for (var i = 0; i < creditDetail.length; i++) {
         var row = document.createElement('tr');
-        var rowData = creditDetail[j];
+        var rowData = creditDetail[i];
 
         // 添加序號
         var indexCell = document.createElement('td');
-        indexCell.textContent = j + 1;
+        indexCell.textContent = i + 1;
         row.appendChild(indexCell);
 
         // 添加其他欄位
         var fields = ['semester', 'subjectCode', 'subject', 'credits', 'score', 'courseType'];
-        for (var i = 0; i < fields.length; i++) {
+        for (var j = 0; j < fields.length; j++) {
             var cell = document.createElement('td');
-            cell.textContent = rowData[fields[i]];
+            if (fields[j] === 'score') {
+                var input = document.createElement('input');
+                input.type = 'text';
+                input.size = 3;
+                input.value = rowData[fields[j]]; // Set initial value from the data
+
+                (function(currentIndex) {
+                    input.addEventListener('input', function(event) {
+                        var newScore = parseInt(event.target.value, 10);
+                        creditDetail[currentIndex].score = newScore;
+                    });
+                })(i);
+
+                cell.appendChild(input);
+            } else {
+                cell.textContent = rowData[fields[j]];
+            }
             row.appendChild(cell);
         }
 
@@ -478,12 +500,24 @@ function showInput() {
     inputList.appendChild(table);
 
     var calculateBtn = document.createElement('button');
+    var restartBtn = document.createElement('button');
     calculateBtn.textContent = '上述資訊無誤，開始計算學分';
-    calculateBtn.onclick = showFinalCredit;
-    inputList.appendChild(calculateBtn);
+    restartBtn.textContent = '移除舊資料，重新開始';
 
-    calculateCredit();
+    restartBtn.onclick = function() {
+        location.reload();
+    };
+
+    calculateBtn.onclick = function() {
+        calculateCredit();
+        showFinalCredit();
+    };
+
+    inputList.appendChild(calculateBtn);
+    inputList.appendChild(restartBtn);
+
 }
+
 
 function clearTextarea(){  //清空文字欄
     var textareaContent = document.getElementById('userInput');
