@@ -476,7 +476,6 @@ function showInput() {
             var cell = document.createElement('td');
             if (fields[j] === 'score') {
                 var input = document.createElement('input');
-                input.setAttribute('id', 'newScore');
                 input.type = 'text';
                 input.size = 3;
                 input.value = rowData[fields[j]]; // Set initial value from the data
@@ -501,11 +500,22 @@ function showInput() {
     inputList.appendChild(table);
 
     var calculateBtn = document.createElement('button');
+    var restartBtn = document.createElement('button');
     calculateBtn.textContent = '上述資訊無誤，開始計算學分';
-    calculateBtn.onclick = showFinalCredit;
-    inputList.appendChild(calculateBtn);
+    restartBtn.textContent = '移除舊資料，重新開始';
 
-    calculateCredit();
+    restartBtn.onclick = function() {
+        location.reload();
+    };
+
+    calculateBtn.onclick = function() {
+        calculateCredit();
+        showFinalCredit();
+    };
+
+    inputList.appendChild(calculateBtn);
+    inputList.appendChild(restartBtn);
+
 }
 
 
