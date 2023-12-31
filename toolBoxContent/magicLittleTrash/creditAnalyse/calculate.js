@@ -200,6 +200,10 @@ function calculateCredit(){
             case "GEC2739": //幸福入門-正向心理學
             case "GEC2736": //楚漢相爭之職場競爭力
             case "GEC2734": //學會學：學習之道
+            case "GEC2724": //創意學經濟
+            case "GEC2733": //職場溝通軟功夫
+            case "GEC2731": //銀髮心理與生活
+            case "GEC2738": //當代應用心理學
                 if(score>=60){
                     creditSum += 2;
                     boyaCredit += 2;
@@ -270,6 +274,7 @@ function calculateCredit(){
             case "GEC2437": //語文創意表達
             case "GEC2445": //屏東學磨課師
             case "GEC2721": //書法e動-文字的生命律動
+            case "GEC2723": //西班牙語言與文化
                 if(score>=60){
                     creditSum += 2;
                     boyaCredit += 2;
@@ -312,6 +317,9 @@ function calculateCredit(){
             case "GEC2753": //細菌與人類疾病
             case "GEC2742": //當機器人來上班-未來職場的 AI必修課
             case "GEC2743": //輕鬆學力學
+            case "GEC2747": //AI精準決策與人類行為干預
+            case "GEC2732": //大數據的設計思考
+            case "GEC2746": //數據驅動創新實踐
                 if(score>=60){
                     creditSum += 2;
                     boyaCredit += 2;
@@ -462,7 +470,7 @@ function showFinalCredit() {
     };
 
     var exportButton = document.createElement('button');
-    exportButton.textContent = '匯出(尚未完成)';
+    exportButton.textContent = '匯出Excel(尚未完成)';
     exportButton.onclick = function() {
         exportToExcel()
     };
