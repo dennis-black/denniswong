@@ -413,55 +413,130 @@ function showFinalCredit() {
     creditTable.style.width = '100%';
     creditTable.setAttribute('id', 'creditTable');
 
+    // var tableContent = `
+    // <table border="1">
+    //     <tr>
+    //         <td colspan=2>總學分</td>
+    //         <td>${creditSum}</td>
+    //     </tr>
+    //     <tr>
+    //         <td rowspan="2">資工系</td>
+    //         <td>系必修</td>
+    //         <td>${compulsoryCredit}</td>
+    //     </tr>
+    //     <tr>
+    //         <td>系選修</td>
+    //         <td>${electiveCredit}</td>
+    //     </tr>
+    //     <tr>
+    //         <td rowspan="6">通識教育</td>
+    //         <td>共同教育</td>
+    //         <td>${generalCredit}</td>
+    //     </tr>
+    //     <tr>
+    //         <td>體適能</td>
+    //         <td>${PFCredit}</td>
+    //     </tr>
+    //     <tr style="color: blue;">
+    //         <td>美學與文化</td>
+    //         <td>${BCCredit}</td>
+    //     </tr>
+    //     <tr style="color: blue;">
+    //         <td>公民與社會</td>
+    //         <td>${SSCredit}</td>
+    //     </tr>
+    //     <tr style="color: blue;">
+    //         <td>自然與科技</td>
+    //         <td>${NTCredit}</td>
+    //     </tr>
+    //     <tr style="color: blue;">
+    //         <td>博雅教育</td>
+    //         <td>${boyaCredit}</td>
+    //     </tr>
+    // </table>
+    // `;
+    var PFCreditDenominator = (PFCredit>=4)? "4": "2~4";
+    var boyaCreditDenominator = (boyaCredit>=14)? "14": "12~14";
+
+    if(boyaCredit+PFCredit)
+
     var tableContent = `
-    <table border="1">
-        <tr>
-            <td colspan=2>總學分</td>
-            <td>${creditSum}</td>
-        </tr>
-        <tr>
-            <td rowspan="2">資工系</td>
-            <td>系必修</td>
-            <td>${compulsoryCredit}</td>
-        </tr>
-        <tr>
-            <td>系選修</td>
-            <td>${electiveCredit}</td>
-        </tr>
-        <tr>
-            <td rowspan="6">通識教育</td>
-            <td>共同教育</td>
-            <td>${generalCredit}</td>
-        </tr>
-        <tr>
-            <td>體適能</td>
-            <td>${PFCredit}</td>
-        </tr>
-        <tr style="color: blue;">
-            <td>美學與文化</td>
-            <td>${BCCredit}</td>
-        </tr>
-        <tr style="color: blue;">
-            <td>公民與社會</td>
-            <td>${SSCredit}</td>
-        </tr>
-        <tr style="color: blue;">
-            <td>自然與科技</td>
-            <td>${NTCredit}</td>
-        </tr>
-        <tr style="color: blue;">
-            <td>博雅教育</td>
-            <td>${boyaCredit}</td>
-        </tr>
-    </table>
-    `;
+    <table border="1" id="creditTable" style="width: 100%;">
+        <tbody>
+            <tr>
+                <td colspan="3">總學分</td>
+                <td><span style="color: blue;">${creditSum}</span></td>
+            </tr>
+            <tr>
+                <td rowspan="2">資工系</td>
+                <td colspan="2">系必修</td>
+                <td><span style="color: blue;">${compulsoryCredit}</span> / 70</td>
+            </tr>
+            <tr>
+                <td colspan="2">系選修</td>
+                <td><span style="color: blue;">${electiveCredit}</span> / 30</td>
+            </tr>
+            <tr>
+                <td rowspan="5">通識教育: <span style="color: blue;">${generalCredit+PFCredit+boyaCredit}</span> / 28</td>
+                <td colspan="2">共同教育</td>
+                <td><span style="color: blue;">${generalCredit}</span> / 10</td>
+            </tr>
+            <tr>
+                <td colspan="2">體適能</td>
+                <td><span style="color: blue;">${PFCredit}</span> / ${PFCreditDenominator} </td>
+            </tr>
+            <tr>
+                <td rowspan="3">博雅教育: <span style="color: blue;">${boyaCredit}</span> / ${boyaCreditDenominator}</td>
+                <td>美學與文化</td>
+                <td style="color: blue;">${BCCredit}</td>
+            </tr>
+            <tr>
+                <td>公民與社會</td>
+                <td style="color: blue;">${SSCredit}</td>
+            </tr>
+            <tr>
+                <td>自然與科技</td>
+                <td style="color: blue;">${NTCredit}</td>
+            </tr>
+        </tbody>
+    </table>`;
+
+    //畢業條件：
+    var creditSumCondition = (parseInt(creditSum) >= 128)? "✅": "❌"; //1 總學分數：>=128
+    var compulsoryCreditCondition = (parseInt(compulsoryCredit) >= 70)? "✅": "❌";//2 必修學分數 70
+    var electiveCreditCondition = (parseInt(electiveCredit) >= 30)? "✅": "❌";//3 選修學分數 30 暫時
+    var generalCreditCondition = (parseInt(generalCredit+PFCredit+boyaCredit) >= 28)? "✅": "❌";//4 通識學分數 28
+
+    var graduateCondition = `
+        <li class="condition-item">
+            <span>總學分至少128</span>
+            <span class="condition-status">${creditSumCondition}</span>
+        </li>
+        <li class="condition-item">
+            <span>必修學分修滿70學分</span>
+            <span class="condition-status">${compulsoryCreditCondition}</span>
+        </li>
+        <li class="condition-item">
+            <span>選修學分含自由、跨院、系選修至少30個學分(核實中)</span>
+            <span class="condition-status">${electiveCreditCondition}</span>
+        </li>
+        <li class="condition-item">
+            <span>通識學分至少28學分(核實中)</span>
+            <span class="condition-status">${generalCreditCondition}</span>
+        </li></br>`;
+
+    // tableContent += graduateCondition;
+    var graduateConditionList = document.createElement('ol');
+    graduateConditionList.className = 'condition-list';
+    graduateConditionList.innerHTML = graduateCondition;
+    
     creditTable.innerHTML = tableContent;
 
     var inputList = document.querySelector('.inputList');
     inputList.appendChild(creditTable);
 
     var inputList = document.querySelector('.inputList');
-    inputList.appendChild(creditTable);
+    inputList.appendChild(graduateConditionList);
 
     var clearButton = document.createElement('button');
     clearButton.textContent = '清空';
@@ -470,7 +545,7 @@ function showFinalCredit() {
     };
 
     var exportButton = document.createElement('button');
-    exportButton.textContent = '匯出Excel(尚未完成)';
+    exportButton.textContent = '匯出Excel';
     exportButton.onclick = function() {
         exportToExcel()
     };
@@ -610,6 +685,13 @@ function showInput() {
 }
 
 function exportToExcel() {
+    // 提取所有 input 标签的值并更新表格内容
+    const inputs = document.querySelectorAll("#checkInput input[type='text']");
+    inputs.forEach(input => {
+        const cell = input.parentElement;
+        cell.innerText = input.value;
+    });
+
     const wb = XLSX.utils.book_new();
   
     // 假設有兩個表格，checkInput 和 creditTable
@@ -628,7 +710,7 @@ function exportToExcel() {
   
     // 將工作簿寫入檔案並下載
     XLSX.writeFile(wb, filename);
-  }
+}
 
 
 function clearTextarea(){  //清空文字欄
@@ -668,5 +750,13 @@ function importTemplate(){ //於文字欄導入模板
 112/1    BFCZ037 電子電路概論    3    60    資訊工程學系
 112/1    BFCZ038 電子電路實習    1    60    資訊工程學系
 112/1    BFCZ052 視窗程式設計    3    60    資訊工程學系
-112/1    BFCZ101 科技英文(一)    3    60    資訊工程學系`;
+112/1    BFCZ101 科技英文(一)    3    60    資訊工程學系
+112/2	GEC1233 資訊英文	2	60	通識	
+112/2	GEC2724 創意學經濟	2	60	通識	
+112/2	GEC2738 當代應用心理學	2	60	通識	
+112/2	BFCZ009 離散數學	3	60	資訊工程學系	
+112/2	BFCZ011 組合語言與微處理機	3	60	資訊工程學系	
+112/2	BFCZ036 資料庫系統導論	3	60	資訊工程學系	
+112/2	BFCZ040 物件導向程式設計	3	60	資訊工程學系	
+112/2	BFCZ104 科技英文(二)	3	60	資訊工程學系	`;
 }
