@@ -502,34 +502,64 @@ function showFinalCredit() {
     </table>`;
 
     //畢業條件：
-    var creditSumCondition = (parseInt(creditSum) >= 128)? "✅": "❌"; //1 總學分數：>=128
-    var compulsoryCreditCondition = (parseInt(compulsoryCredit) >= 70)? "✅": "❌";//2 必修學分數 70
-    var electiveCreditCondition = (parseInt(electiveCredit) >= 30)? "✅": "❌";//3 選修學分數 30 暫時
-    var generalCreditCondition = (parseInt(generalCredit+PFCredit+boyaCredit) >= 28)? "✅": "❌";//4 通識學分數 28
-
+    var pass = "<span style='color: blue;'>通過</span>";
+    //var pass = "✅";
+    var fail = "<span style='color: red;'>否決</span>";
+    //var fail = "❌";
+    var creditSumCondition = (parseInt(creditSum) >= 128)? pass: fail; //1 總學分數：>=128
+    var compulsoryCreditCondition = (parseInt(compulsoryCredit) >= 70)? pass: fail;//2 必修學分數 70
+    var electiveCreditCondition = (parseInt(electiveCredit) >= 30)? pass: fail;//3 選修學分數 30 暫時
+    var generalCreditCondition = (parseInt(generalCredit+PFCredit+boyaCredit) >= 28)? pass: fail;//4 通識學分數 28
+    var boyaCreditCondition = ((parseInt(BCCredit)>0)&&(parseInt(SSCredit)>0)&&(parseInt(NTCredit)>0))? pass: fail;
+    var boyaAndPECreditCondition = (parseInt(boyaCredit)+parseInt(PFCredit)>=16)? pass: fail;
+    
     var graduateCondition = `
-        <li class="condition-item">
-            <span>總學分至少128</span>
-            <span class="condition-status">${creditSumCondition}</span>
-        </li>
-        <li class="condition-item">
-            <span>必修學分修滿70學分</span>
-            <span class="condition-status">${compulsoryCreditCondition}</span>
-        </li>
-        <li class="condition-item">
-            <span>選修學分含自由、跨院、系選修至少30個學分(核實中)</span>
-            <span class="condition-status">${electiveCreditCondition}</span>
-        </li>
-        <li class="condition-item">
-            <span>通識學分至少28學分(核實中)</span>
-            <span class="condition-status">${generalCreditCondition}</span>
-        </li></br>`;
+        <tr>
+            <td>畢業條件</td>
+            <td>判定結果</td>
+        </tr>
+        <tr>
+            <td>總學分至少128(<span style='color: blue;'>實際總學分=${creditSum}</span>)</td>
+            <td class="condition-status">${creditSumCondition}</td>
+        </tr>
+        <tr>
+            <td>系必修學分修滿70學分(<span style='color: blue;'>實際系必修學分=${compulsoryCredit}</span>)</td>
+            <td class="condition-status">${compulsoryCreditCondition}</td>
+        </tr>
+        <tr>
+            <td>選修學分含自由、跨院、系選修至少30個學分(<span style='color: blue;'>實際選修學分=${electiveCredit}</span>)(<span style='color: red;'>核實中</span>)</td>
+            <td class="condition-status">${electiveCreditCondition}</td>
+        </tr>
+        <tr>
+            <td>通識學分至少28學分(<span style='color: blue;'>實際通識學分=${parseInt(generalCredit+PFCredit+boyaCredit)}</span>)(<span style='color: red;'>核實中</span>)</td>
+            <td class="condition-status">${generalCreditCondition}</td>
+        </tr>
+        <tr>
+            <td>博雅教育與體適能總和至少修習16學分(<span style='color: blue;'>實際博雅與體適能加總學分=${parseInt(boyaCredit)+parseInt(PFCredit)}</span>)</td>
+            <td class="condition-status">${boyaAndPECreditCondition}</td>
+        </tr>
+        <tr>
+            <td>博雅教育中每一類課程至少修習2學分</td>
+            <td class="condition-status">${boyaCreditCondition}</td>
+        </tr>
+        <tr>
+            <td>專業證照採認點數至少4點</td>
+            <td class="condition-status">--</td>
+        </tr>
+        <tr>
+            <td>參與講座並取得20條研習條</td>
+            <td class="condition-status">--</td>
+        </tr>
+        `;
 
     // tableContent += graduateCondition;
-    var graduateConditionList = document.createElement('ol');
+    var graduateConditionList = document.createElement('table');
     graduateConditionList.className = 'condition-list';
     graduateConditionList.innerHTML = graduateCondition;
-    
+    graduateConditionList.setAttribute('border', '1');
+    graduateConditionList.setAttribute('id', 'creditTable');
+    graduateConditionList.setAttribute('style', 'width: 100%;');
+
     creditTable.innerHTML = tableContent;
 
     var inputList = document.querySelector('.inputList');
