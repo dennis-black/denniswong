@@ -516,38 +516,44 @@ function showFinalCredit() {
     var graduateCondition = `
         <tr>
             <td>畢業條件</td>
+            <td>實際狀況</td>
             <td>判定結果</td>
         </tr>
         <tr>
-            <td>總學分至少128(<span style='color: blue;'>實際總學分=${creditSum}</span>)</td>
+            <td>總學分至少128</td>
+            <td><span style='color: blue;'>${creditSum}</span></td>
             <td class="condition-status">${creditSumCondition}</td>
         </tr>
         <tr>
-            <td>系必修學分修滿70學分(<span style='color: blue;'>實際系必修學分=${compulsoryCredit}</span>)</td>
+            <td>系必修學分修滿70學分</td>
+            <td><span style='color: blue;'>${compulsoryCredit}</span></td>
             <td class="condition-status">${compulsoryCreditCondition}</td>
         </tr>
         <tr>
-            <td>選修學分含自由、跨院、系選修至少30個學分(<span style='color: blue;'>實際選修學分=${electiveCredit}</span>)(<span style='color: red;'>核實中</span>)</td>
+            <td>選修學分含自由、跨院、系選修至少30個學分(<span style='color: red;'>核實中</span>)</td>
+            <td><span style='color: blue;'>${electiveCredit}</span></td>
             <td class="condition-status">${electiveCreditCondition}</td>
         </tr>
         <tr>
-            <td>通識學分至少28學分(<span style='color: blue;'>實際通識學分=${parseInt(generalCredit+PFCredit+boyaCredit)}</span>)(<span style='color: red;'>核實中</span>)</td>
+            <td>通識學分至少28學分(<span style='color: red;'>核實中</span>)</td>
+            <td><span style='color: blue;'>${parseInt(generalCredit+PFCredit+boyaCredit)}</span></td>
             <td class="condition-status">${generalCreditCondition}</td>
         </tr>
         <tr>
-            <td>博雅教育與體適能總和至少修習16學分(<span style='color: blue;'>實際博雅與體適能加總學分=${parseInt(boyaCredit)+parseInt(PFCredit)}</span>)</td>
+            <td>博雅教育與體適能總和至少修習16學分</td>
+            <td><span style='color: blue;'>${parseInt(boyaCredit)+parseInt(PFCredit)}</span></td>
             <td class="condition-status">${boyaAndPECreditCondition}</td>
         </tr>
         <tr>
-            <td>博雅教育中每一類課程至少修習2學分</td>
+            <td colspan="2">博雅教育中每一類課程至少修習2學分</td>
             <td class="condition-status">${boyaCreditCondition}</td>
         </tr>
         <tr>
-            <td>專業證照採認點數至少4點</td>
+            <td colspan="2">專業證照採認點數至少4點</td>
             <td class="condition-status">--</td>
         </tr>
         <tr>
-            <td>參與講座並取得20條研習條</td>
+            <td colspan="2">參與講座並取得20條研習條</td>
             <td class="condition-status">--</td>
         </tr>
         `;
