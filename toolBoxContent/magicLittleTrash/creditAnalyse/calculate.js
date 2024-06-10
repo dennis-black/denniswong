@@ -504,7 +504,7 @@ function showFinalCredit() {
     //畢業條件：
     var pass = "<span style='color: blue;'>通過</span>";
     //var pass = "✅";
-    var fail = "<span style='color: red;'>否決</span>";
+    var fail = "<span style='color: red;'>未達</span>";
     //var fail = "❌";
     var creditSumCondition = (parseInt(creditSum) >= 128)? pass: fail; //1 總學分數：>=128
     var compulsoryCreditCondition = (parseInt(compulsoryCredit) >= 70)? pass: fail;//2 必修學分數 70
@@ -515,9 +515,9 @@ function showFinalCredit() {
     
     var graduateCondition = `
         <tr>
-            <td>畢業條件</td>
-            <td>實際狀況</td>
-            <td>判定結果</td>
+            <td><b>畢業條件</b></td>
+            <td><b>實際狀況</b></td>
+            <td><b>判定結果</b></td>
         </tr>
         <tr>
             <td>總學分至少128</td>
@@ -530,12 +530,12 @@ function showFinalCredit() {
             <td class="condition-status">${compulsoryCreditCondition}</td>
         </tr>
         <tr>
-            <td>選修學分含自由、跨院、系選修至少30個學分(<span style='color: red;'>核實中</span>)</td>
+            <td>選修學分含自由、跨院、系選修至少30個學分(<span style='color: red;'>待核實</span>)</td>
             <td><span style='color: blue;'>${electiveCredit}</span></td>
             <td class="condition-status">${electiveCreditCondition}</td>
         </tr>
         <tr>
-            <td>通識學分至少28學分(<span style='color: red;'>核實中</span>)</td>
+            <td>通識學分至少28學分(<span style='color: red;'>待核實</span>)</td>
             <td><span style='color: blue;'>${parseInt(generalCredit+PFCredit+boyaCredit)}</span></td>
             <td class="condition-status">${generalCreditCondition}</td>
         </tr>
@@ -701,8 +701,8 @@ function showInput() {
 
     var calculateBtn = document.createElement('button');
     var restartBtn = document.createElement('button');
-    calculateBtn.textContent = '上述資訊無誤，開始計算學分';
-    restartBtn.textContent = '移除舊資料，重新開始';
+    calculateBtn.textContent = '繼續';
+    restartBtn.textContent = '重新開始';
 
     restartBtn.onclick = function() {
         location.reload();

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dennis-Black 工具箱</title>
     <link rel="stylesheet" href="style.css">
-    <style>
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -63,6 +63,127 @@
             color: #fff;
             text-align: center;
             padding: 10px 0;
+        }
+    </style> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* 淺藍色背景 */
+        }
+
+        header {
+            background-color: #333; /* 主標題背景色 */
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        .backTo {
+            background-color: rgb(95, 106, 112);
+            border-radius: 5px;
+        }
+
+        .backTo:hover {
+            background-color: rgb(49, 68, 83);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* 白色內容背景 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        article {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd; /* 文章邊框 */
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        footer {
+            background-color: #333; /* 頁腳背景色 */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* 表格樣式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        td input[type="text"] {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            color: blue;
+        }
+
+        .condition-list td:first-child {
+            text-align: left;
+        }
+
+        .condition-list .condition-status span {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .condition-list .condition-status span[style="color: red;"] {
+            background-color: #ffe5e5;
+            color: red;
+        }
+
+        .condition-list .condition-status span[style="color: blue;"] {
+            background-color: #e5f5ff;
+            color: blue;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 20px 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -145,7 +266,7 @@
                 <button id="processButton" onclick="processCredit()">開始分析</button>
                 <p class="checkInput"><ol class="inputList"></ol></p>
             </p>
-            <h4 style="float: right;">更新時間: Jun. 10 2024 &nbsp; Version 3.1</h4>
+            <h4 style="float: right;">更新時間: Jun. 11 2024 &nbsp; Version 3.2</h4>
         </article>
         <script src="calculate.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
