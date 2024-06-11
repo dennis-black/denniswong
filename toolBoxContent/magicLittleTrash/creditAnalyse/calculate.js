@@ -624,10 +624,13 @@ function processCredit(){
     userInput.readOnly = true; //唯讀文字欄
     var processButton = document.getElementById('processButton');
     processButton.disabled = true; //禁用開始分析按鈕
+    processButton.style.display = 'none';
     var clearButton = document.getElementById('clearButton');
     clearButton.disabled = true; //禁用清空輸入欄按鈕
+    clearButton.style.display = 'none';
     var importTemplateButton = document.getElementById('importTemplateButton');
     importTemplateButton.disabled = true; //禁用導入模板按鈕
+    importTemplateButton.style.display = 'none';
 }
 
 function showInput() {
@@ -702,6 +705,7 @@ function showInput() {
     var calculateBtn = document.createElement('button');
     var restartBtn = document.createElement('button');
     calculateBtn.textContent = '繼續';
+    calculateBtn.style.backgroundColor = "#01814A";
     restartBtn.textContent = '重新開始';
 
     restartBtn.onclick = function() {
@@ -715,8 +719,9 @@ function showInput() {
         restartBtn.style.display = 'none';
     };
 
-    inputList.appendChild(calculateBtn);
     inputList.appendChild(restartBtn);
+    inputList.appendChild(calculateBtn);
+    
 
 }
 
