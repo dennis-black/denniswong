@@ -278,6 +278,8 @@ function calculateCredit(){
             case "GEC2445": //屏東學磨課師
             case "GEC2721": //書法e動-文字的生命律動
             case "GEC2723": //西班牙語言與文化
+            case "GEC2757": //文學名篇選讀：愛戀與生活[遠]
+            case "GEC2756": //王陽明帶你打土匪：明朝心學的智慧發展史[遠]
                 if(score>=60){
                     creditSum += 2;
                     boyaCredit += 2;
@@ -323,6 +325,9 @@ function calculateCredit(){
             case "GEC2747": //AI精準決策與人類行為干預
             case "GEC2732": //大數據的設計思考
             case "GEC2746": //數據驅動創新實踐
+            case "GEC2755": //人可以貌相：臉孔處理與辨識[遠]
+            case "GEC2754": //兒童精細動作及介入策略[遠]
+            case "GEC2758": //營養不能少[遠]
                 if(score>=60){
                     creditSum += 2;
                     boyaCredit += 2;
@@ -372,8 +377,6 @@ function calculateCredit(){
                     break;
                 }
 
-            // default: mistakeDetail = mistakeDetail+subjectCode+' '; 
-
             //======================================= 不計入畢業學分的國防教育
             case "GEC5108":
             case "GEC5107":
@@ -397,36 +400,6 @@ function calculateCredit(){
     }
 }
 
-// function showFinalCredit(){
-//     if(mistakeDetail == ""){
-//         alert('使用者所輸入的科目代號都能在《111級資工系學生手冊》上被找到\n'+
-//         '以下是根據使用者輸入內容的學分估算'+
-//         '\n總學分：'+creditSum+
-//         '\n系必修：'+compulsoryCredit+
-//         '\n系選修：'+electiveCredit+
-//         '\n共同教育：'+generalCredit+
-//         '\n體適能：'+PFCredit+
-//         '\n博雅教育：'+boyaCredit+
-//         '\n   ->美學文化：'+BCCredit+
-//         '\n   ->公民社會：'+SSCredit+
-//         '\n   ->自然科技：'+NTCredit);
-//     } else{
-//         alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，以下是無法被找到的科目代號：\n'+
-//         mistakeDetail+
-//         '\n\n以下是根據使用者輸入內容的學分估算'+
-//         '\n總學分：'+creditSum+
-//         '\n系必修：'+compulsoryCredit+
-//         '\n系選修：'+electiveCredit+
-//         '\n共同教育：'+generalCredit+
-//         '\n體適能：'+PFCredit+
-//         '\n博雅教育：'+boyaCredit+
-//         '\n   ->美學文化：'+BCCredit+
-//         '\n   ->公民社會：'+SSCredit+
-//         '\n   ->自然科技：'+NTCredit);
-//     }
-//     location.reload();
-// }
-
 function showFinalCredit() {
     if(mistakeDetail != "")
         alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，將根據使用者輸入計入自由選修學分：\n'+ mistakeDetail)
@@ -436,48 +409,6 @@ function showFinalCredit() {
     creditTable.style.width = '100%';
     creditTable.setAttribute('id', 'creditTable');
 
-    // var tableContent = `
-    // <table border="1">
-    //     <tr>
-    //         <td colspan=2>總學分</td>
-    //         <td>${creditSum}</td>
-    //     </tr>
-    //     <tr>
-    //         <td rowspan="2">資工系</td>
-    //         <td>系必修</td>
-    //         <td>${compulsoryCredit}</td>
-    //     </tr>
-    //     <tr>
-    //         <td>系選修</td>
-    //         <td>${electiveCredit}</td>
-    //     </tr>
-    //     <tr>
-    //         <td rowspan="6">通識教育</td>
-    //         <td>共同教育</td>
-    //         <td>${generalCredit}</td>
-    //     </tr>
-    //     <tr>
-    //         <td>體適能</td>
-    //         <td>${PFCredit}</td>
-    //     </tr>
-    //     <tr style="color: blue;">
-    //         <td>美學與文化</td>
-    //         <td>${BCCredit}</td>
-    //     </tr>
-    //     <tr style="color: blue;">
-    //         <td>公民與社會</td>
-    //         <td>${SSCredit}</td>
-    //     </tr>
-    //     <tr style="color: blue;">
-    //         <td>自然與科技</td>
-    //         <td>${NTCredit}</td>
-    //     </tr>
-    //     <tr style="color: blue;">
-    //         <td>博雅教育</td>
-    //         <td>${boyaCredit}</td>
-    //     </tr>
-    // </table>
-    // `;
     var PFCreditDenominator = (PFCredit>=4)? "4": "2~4";
     var boyaCreditDenominator = (boyaCredit>=14)? "14": "12~14";
 
