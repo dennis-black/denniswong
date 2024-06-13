@@ -10,10 +10,13 @@ var BCCredit = 0; //美學與文化
 var SSCredit = 0; //公民與社會
 var NTCredit = 0; //自然與科技
 var PFCredit = 0; //體適能
+var freeElectiveCredit = 0; //非本系自由選修學分
+var nationalDefenseCredit = 0; //不計入畢業學分的國防教育
 
 function calculateCredit(){
     for (var i = 0; i < creditDetail.length; i++) {
         var score = creditDetail[i].score;
+        var eachCredit = creditDetail[i].credits;
         var subjectCode = creditDetail[i].subjectCode;
 
         switch(subjectCode){ //================系必修
@@ -369,7 +372,27 @@ function calculateCredit(){
                     break;
                 }
 
-            default: mistakeDetail = mistakeDetail+subjectCode+' '; 
+            // default: mistakeDetail = mistakeDetail+subjectCode+' '; 
+
+            //======================================= 不計入畢業學分的國防教育
+            case "GEC5108":
+            case "GEC5107":
+            case "GEC5105":
+            case "GEC5106":
+            case "GEC5109":
+                if(score>=60){
+                    nationalDefenseCredit += 1;
+                    break;
+                } else {
+                    break;
+                }
+
+            default:
+                mistakeDetail = mistakeDetail+subjectCode+' '; 
+                if(score>=60){
+                    creditSum += eachCredit;
+                    freeElectiveCredit += eachCredit;
+                }
         }
     }
 }
@@ -406,7 +429,7 @@ function calculateCredit(){
 
 function showFinalCredit() {
     if(mistakeDetail != "")
-        alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，以下是無法被找到的科目代號：\n'+ mistakeDetail)
+        alert('使用者輸入的某些科目代號無法在《111級資工系學生手冊》上被找到，將根據使用者輸入計入自由選修學分：\n'+ mistakeDetail)
 
     var creditTable = document.createElement('table');
     creditTable.border = '1';
@@ -498,17 +521,26 @@ function showFinalCredit() {
                 <td>自然與科技</td>
                 <td style="color: blue;">${NTCredit}</td>
             </tr>
+            <tr>
+                <td colspan="3">自由選修(即非本系課程)</td>
+                <td><span style="color: blue;">${freeElectiveCredit}</span></td>
+            </tr>
+            <tr>
+                <td colspan="3">國防教育(<span style='color: red;'>學分不計入最低畢業門檻與通識學分</span>)</td>
+                <td style="color: blue;">${nationalDefenseCredit}</td>
+            </tr>
         </tbody>
     </table>`;
 
     //畢業條件：
     var pass = "<span style='color: blue;'>通過</span>";
-    //var pass = "✅";
+    // var pass = "✅";
     var fail = "<span style='color: red;'>未達</span>";
-    //var fail = "❌";
+    // var fail = "❌";
     var creditSumCondition = (parseInt(creditSum) >= 128)? pass: fail; //1 總學分數：>=128
     var compulsoryCreditCondition = (parseInt(compulsoryCredit) >= 70)? pass: fail;//2 必修學分數 70
-    var electiveCreditCondition = (parseInt(electiveCredit) >= 30)? pass: fail;//3 選修學分數 30 暫時
+    var electiveCreditCondition = (parseInt(electiveCredit) >= 10)? pass: fail;//3 系選修學分數 >= 10
+    var electiveCreditSumCondition = (parseInt(electiveCredit+freeElectiveCredit) >= 30)? pass: fail;//3 所有選修學分數 >= 10
     var generalCreditCondition = (parseInt(generalCredit+PFCredit+boyaCredit) >= 28)? pass: fail;//4 通識學分數 28
     var boyaCreditCondition = ((parseInt(BCCredit)>0)&&(parseInt(SSCredit)>0)&&(parseInt(NTCredit)>0))? pass: fail;
     var boyaAndPECreditCondition = (parseInt(boyaCredit)+parseInt(PFCredit)>=16)? pass: fail;
@@ -530,12 +562,17 @@ function showFinalCredit() {
             <td class="condition-status">${compulsoryCreditCondition}</td>
         </tr>
         <tr>
-            <td>選修學分含自由、跨院、系選修至少30個學分(<span style='color: red;'>待核實</span>)</td>
+            <td><span style='color: red;'>系選修</span>至少10學分</td>
             <td><span style='color: blue;'>${electiveCredit}</span></td>
             <td class="condition-status">${electiveCreditCondition}</td>
         </tr>
         <tr>
-            <td>通識學分至少28學分(<span style='color: red;'>待核實</span>)</td>
+            <td><span style='color: red;'>選修(含非本系自由選修)</span>學分加總至少30學分</td> 
+            <td><span style='color: blue;'>${electiveCredit+freeElectiveCredit}</span></td>
+            <td class="condition-status">${electiveCreditSumCondition}</td>
+        </tr>
+        <tr>
+            <td>通識學分至少28學分</td>
             <td><span style='color: blue;'>${parseInt(generalCredit+PFCredit+boyaCredit)}</span></td>
             <td class="condition-status">${generalCreditCondition}</td>
         </tr>
@@ -799,5 +836,7 @@ function importTemplate(){ //於文字欄導入模板
 112/2	BFCZ011 組合語言與微處理機	3	60	資訊工程學系	
 112/2	BFCZ036 資料庫系統導論	3	60	資訊工程學系	
 112/2	BFCZ040 物件導向程式設計	3	60	資訊工程學系	
-112/2	BFCZ104 科技英文(二)	3	60	資訊工程學系	`;
+112/2	BFCZ104 科技英文(二)	3	60	資訊工程學系	
+112/2	GEC5109 全民國防教育軍事訓練-國際情勢	1	60	通識
+112/2	DGCZ046 第二外國語:西班牙文(二)	2	60	應用英文系`;
 }
