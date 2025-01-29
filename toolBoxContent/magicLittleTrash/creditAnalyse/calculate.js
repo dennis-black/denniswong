@@ -215,6 +215,15 @@ function calculateCredit(){
                 } else {
                     break;
                 }
+            case "GEC2762": //國際競賽英語溝通表達[遠]
+                if(score>=60){
+                    creditSum += 1;
+                    boyaCredit += 1;
+                    SSCredit += 1;
+                    break;
+                } else {
+                    break;
+                }
 
             //======================================美學與文化
             case "GEC1102": //應用國文
@@ -275,15 +284,24 @@ function calculateCredit(){
             case "GEC2338": //東南亞社會與文化
             case "GEC2339": //屏東學
             case "GEC2437": //語文創意表達
-            case "GEC2445": //屏東學磨課師
             case "GEC2721": //書法e動-文字的生命律動
             case "GEC2723": //西班牙語言與文化
             case "GEC2757": //文學名篇選讀：愛戀與生活[遠]
             case "GEC2756": //王陽明帶你打土匪：明朝心學的智慧發展史[遠]
+            case "GEC2763": //數位輔助 YouTube 英語看世界[遠]
                 if(score>=60){
                     creditSum += 2;
                     boyaCredit += 2;
                     BCCredit += 2;
+                    break;
+                } else {
+                    break;
+                }
+            case "GEC2445": //屏東學磨課師
+                if(score>=60){
+                    creditSum += 1;
+                    boyaCredit += 1;
+                    BCCredit += 1;
                     break;
                 } else {
                     break;
@@ -325,13 +343,24 @@ function calculateCredit(){
             case "GEC2747": //AI精準決策與人類行為干預
             case "GEC2732": //大數據的設計思考
             case "GEC2746": //數據驅動創新實踐
-            case "GEC2755": //人可以貌相：臉孔處理與辨識[遠]
             case "GEC2754": //兒童精細動作及介入策略[遠]
-            case "GEC2758": //營養不能少[遠]
+            case "GEC2760": //大數據：資料採集與視覺化[遠]
+            case "GEC2761": //生成式AI與ChatGPT應用[遠]
+            case "GEC2759": //超級英雄的物理學[遠]
                 if(score>=60){
                     creditSum += 2;
                     boyaCredit += 2;
                     NTCredit += 2;
+                    break;
+                } else {
+                    break;
+                }
+            case "GEC2755": //人可以貌相：臉孔處理與辨識[遠]
+            case "GEC2758": //營養不能少[遠]
+                if(score>=60){
+                    creditSum += 1;
+                    boyaCredit += 1;
+                    NTCredit += 1;
                     break;
                 } else {
                     break;
@@ -464,7 +493,7 @@ function showFinalCredit() {
     </table>`;
 
     //畢業條件：
-    var pass = "<span style='color: blue;'>通過</span>";
+    var pass = "<span style='color: green;'>通過</span>";
     // var pass = "✅";
     var fail = "<span style='color: red;'>未達</span>";
     // var fail = "❌";
@@ -475,6 +504,7 @@ function showFinalCredit() {
     var generalCreditCondition = (parseInt(generalCredit+PFCredit+boyaCredit) >= 28)? pass: fail;//4 通識學分數 28
     var boyaCreditCondition = ((parseInt(BCCredit)>0)&&(parseInt(SSCredit)>0)&&(parseInt(NTCredit)>0))? pass: fail;
     var boyaAndPECreditCondition = (parseInt(boyaCredit)+parseInt(PFCredit)>=16)? pass: fail;
+    var cross_School_ElectiveCreditCondition = (parseInt(freeElectiveCredit)>=2)? pass: fail;
     
     var graduateCondition = `
         <tr>
@@ -506,6 +536,11 @@ function showFinalCredit() {
             <td>通識學分至少28學分</td>
             <td><span style='color: blue;'>${parseInt(generalCredit+PFCredit+boyaCredit)}</span></td>
             <td class="condition-status">${generalCreditCondition}</td>
+        </tr>
+        <tr>
+            <td><span style='color: red;'>跨院選修學分至少2學分</span>(參考第6點)</td>
+            <td><span style='color: blue;'>${parseInt(freeElectiveCredit)}</span></td>
+            <td class="condition-status">${cross_School_ElectiveCreditCondition}</td>
         </tr>
         <tr>
             <td>博雅教育與體適能總和至少修習16學分</td>
@@ -575,6 +610,15 @@ function processCredit(){
         if (isNaN(array[4])) {
             array[5] = array[4];
             array[4] = 0; //代換成0分
+        }
+        if (array[2] == "Android") { // 中間有空格的科目名稱：Android APP軟體設計(上）
+            array[2] += array[3];
+            array[3] = array[4];
+            array[4] = array[5];
+            array[5] = array[6];
+        }
+        if(array[1].includes("BFB")){
+            continue;
         }
         if(array[5]=="資訊工程學系") array[5] = "資工系"; //簡化系級名稱
         var dataDetail = {
@@ -769,5 +813,12 @@ function importTemplate(){ //於文字欄導入模板
 112/2	BFCZ040 物件導向程式設計	3	60	資訊工程學系	
 112/2	BFCZ104 科技英文(二)	3	60	資訊工程學系	
 112/2	GEC5109 全民國防教育軍事訓練-國際情勢	1	60	通識
-112/2	DGCZ046 第二外國語:西班牙文(二)	2	60	應用英文系`;
+112/2	DGCZ046 第二外國語:西班牙文(二)	2	60	應用英文系
+113/1	BFCZ015 機率與統計	3	60	資訊工程學系	
+113/1	BFCZ030 微處理機實習	1	60	資訊工程學系	
+113/1	BFCZ155 軟體工程	3	60	資訊工程學系	
+113/1	BFCZ059 影像處理導論	3	60	資訊工程學系	
+113/1	BFCZ090 資訊安全	3	60	資訊工程學系	
+113/1	BFCZ166 Android APP軟體設計(上)	3	60	資訊工程學系	
+113/1	BFCZ177 人工智慧程式設計	3	60	資訊工程學系`;
 }

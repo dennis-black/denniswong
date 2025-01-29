@@ -166,9 +166,9 @@
             color: red;
         }
 
-        .condition-list .condition-status span[style="color: blue;"] {
-            background-color: #e5f5ff;
-            color: blue;
+        .condition-list .condition-status span[style="color: green;"] {
+            background-color: #c2f2d0;
+            color: green;
         }
 
         button {
@@ -197,9 +197,7 @@
         <article>
             <p>
                 <p>
-                    聲明：該網站架設係透過GitHub Pages，僅支援全前端的網頁碼，
-                    因此這個網站不會紀錄任何資訊，也無法紀錄任何資訊，
-                    所有的計算過程全部由使用者端的瀏覽器進行，請使用者放心使用。
+                    聲明：該網站架設係透過GitHub Pages，僅支援全前端的網頁碼，因此這個網站不會紀錄任何資訊，也無法紀錄任何資訊，所有的計算過程全部由使用者端的瀏覽器進行。
                 </p>
                 <p>使用說明：
                     <ol>
@@ -213,8 +211,7 @@
                             </br></br>
                         </li>
                         <li>
-                            本學分計算機僅能計算資工系學生手冊中條列的系必修、
-                            系選修以及共同教育中心開設的通識課程。若您曾經修習過其他科系的課程學分加總將無法正確計算。
+                            本學分計算機僅能計算資工系學生手冊中條列的系必修、系選修以及共同教育中心開設的通識課程。若您曾經修習過其他科系的課程學分加總將無法正確計算。
                             </br></br>
                         </li>
                         <li>
@@ -222,6 +219,17 @@
                         </li>
                         <li>
                             有鑑於使用手機複製貼上時手機可能會自動裁切空格造成錯誤，因此請儘量使用電腦操作。</br></br>
+                        </li>
+                        <li>
+                            根據學生手冊第19頁的通識課程架構圖中的跨院選修2學分，可以透過以下方式獲得
+                            <ul>
+                                <li>選修其它學院課程（推薦程度：高），直接去別的學院的任一個學系修 2 學分的課</li>
+                                <li>跨院微學分選修（推薦程度：中），有時候要晚上上課而且必須於特別時間選課</li>
+                                <li>屏大卓越講座，上一次開課的學期是3年前（110-2），基本上不用考慮</li>
+                                <li>自我導向學習，請參考<a href="https://cis.nptu.edu.tw/p/406-1099-134510,r2607.php?Lang=zh-tw" target="_blank">跨領域學程中心</a></li>
+                            </ul>
+                            因爲學校會開新的課程，開發人員也無法收錄全校所有的課程編號，因此這個計算機<span style="color: red;">預設的計算方式將假設使用者都是透過選修其它學院課程來獲得跨院選修學分</span>，並且於分析表格中以“自由選修”學分數顯示跨院選修的學分數（請特別注意，任何從非資工系大學部課程獲得的學分將會計入自由選修的學分。若只是想要取得跨院選修的兩學分，請不要修習資訊學院其他系的課程如：電通，機器人...），<span style="color: red;">請使用者針對本項加以確認</span>。
+                            </br></br>
                         </li>
                         <li>
                             根據 <a href="https://mega.nz/folder/XUFXhKwa#BAUqj1YqTfJXWJuJu3mj3Q" target="_blank">資訊工程學系-學生手冊</a> 第20頁的註解，以及第26頁表格右下角第二點之敘述“資訊課程資訊學院各系所不必修習，不足學分數（2學分）將由博雅教育課程補足”。也就是說對於資工系的我們來講，<span style="color: red;">第19頁的博雅教育10~12學分會變成12~14學分</span>
@@ -266,7 +274,7 @@
                 <button id="processButton" onclick="processCredit()">開始分析</button>
                 <p class="checkInput"><ol class="inputList"></ol></p>
             </p>
-            <h4 style="float: right;">更新時間: Jun. 11 2024 &nbsp; Version 3.3</h4>
+            <h4 style="float: right;">更新時間: Jun. 30 2025 &nbsp; Version 3.4</h4>
         </article>
         <script src="calculate.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
