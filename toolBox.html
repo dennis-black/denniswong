@@ -1,134 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Dennis-Black</title>
-    <style>
-        body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-        }
-
-        .logo {
-          height: 40px;
-          margin: 7px;
-
-        }
-
-        header {
-          background-color: #333;
-          color: #fff;
-          padding: 1rem;
-        }
-
-        nav ul {
-          float: right;
-          list-style: none;
-          display: flex;
-        }
-
-        nav li {
-          margin-right: 1rem;
-        }
-
-        /* hover 導航欄效果 */
-        li a:hover{ 
-          background-color: #fff;
-          border-radius: 4px;
-          color: #736f6f;
-        }
-
-        nav a {
-          text-decoration: none;
-          color: #fff;
-          font-size: 16px;
-        }
-
-        .catalog a{
-          /* background-color: #99c2ff; */
-          color :#0a326d;
-          text-decoration: none;
-          /* background-color: rgb(230, 243, 255); */
-          /* border-radius: 10px; */
-          /* padding: 5px; */
-          /* border-color: rgb(207, 215, 222); */
-          /* border-width: 1px;
-          border-style: solid; */
-        }
-
-        .catalog a:hover{
-          border-radius: 10px;
-          
-        }
-
-        .catalog{
-          list-style-type: circle;
-        }
-
-        section {
-          padding: 2rem;
-        }
-
-        #home {
-          background-color: #f0f0f0;
-        }
-
-        #portfolio .portfolio-item {
-          margin-bottom: 2rem;
-        }
-
-        footer {
-          /* position: fixed;
-          bottom: 0;
-          width: 100%; */
-          /* left: 0; */
-          padding: 1rem;
-          text-align: center;
-          background-color: #333;
-          color: #fff;
-        }
-
-        @media screen and (max-width: 600px) {
-          header {
-            background-color: #333;
-            color: #fff;
-            padding-bottom: 60px;
-            /* height: 50px; */
-          }
-
-          nav a{
-            text-decoration: none;
-            color: #fff;
-            font-size: 14px;
-          }
-        }
-
-    </style>
-</head>
-  <body>
-    <header>
-      <nav>
-        <a href="index.html"><img class="logo" src="./asset/blackcatstudio_banner.png"></a>
-        <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="toolBox.html" style="color: #99c2ff; font-weight: bolder;">工具箱</a></li>
-          <li><a href="aboutMe.html">關於我</a></li>
-          <li><a href="sourceCode.html">開源碼</a></li>
-        </ul>
-      </nav>
-    </header>
-
+  <div id="headerSection"></div> 
     <!-- /////////////////////////////////////////////////////////////// -->
-
-
     <section id="home">
-      <h1>實用工具箱</br>Utility Toolbox</h1>
-      <h3>為避免衍生不必要的法律事件以及版權問題
-      </br>請謹慎使用</h3>
-      <!-- <h5>*工具箱的內容目前皆以電腦的顯示為主，還沒為手機的解析度排版網頁，因此用手機檢視可能導致圖片跑版</h5> -->
+      <h1>工具箱</br>Utility Toolbox</h1>
+      <h3>請謹慎使用</h3>
     </section>
 
     <section id="intro">
@@ -162,33 +38,8 @@
     </br>
     </br>
     </section>
-
     <!-- /////////////////////////////////////////////////////////////// -->
-
-    <footer>
-      <p>&copy; 2023 黑貓工作室</p>
-    </footer>
-
-    <script>
-      const searchInput = document.getElementById("searchInput");
-      const toollist = document.getElementById("toollist");
-      const items = toollist.getElementsByTagName("li");
-
-      searchInput.addEventListener('input',//事件監聽“輸入”時，做以下function的內容
-      function(){
-        const searchCase = searchInput.value.toLowerCase();
-
-        for(let i = 0; i < items.length; i++){
-          const item = items[i];
-          const itemName = item.textContent.toLowerCase();
-
-          if(itemName.includes(searchCase)){
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        }
-      });
-    </script>
+    <div id="footerSection"></div>
+    <script src="./mainTemplate/script.js"></script>
   </body>
 </html>
